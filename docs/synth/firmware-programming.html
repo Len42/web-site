@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Firmware Programming - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>Firmware Programming</h1>
+<p>How to program the firmware in a digital module</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="#in-place">In-Place</a></li>
+<li><a href="#otherwise">Other</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<p>Some of my modules
+(<a href="https://github.com/Len42/Synth-pub/tree/main/modules/Envelope2">Envelope2</a>,
+<a href="https://github.com/Len42/Synth-pub/tree/main/modules/LFO-DigiVC">LFO-DigiVC</a>)
+use an <a href="https://www.microchip.com/en-us/product/atmega328p">ATmega328P</a> microcontroller chip running firmware that is programmed using the
+<a href="https://www.arduino.cc/">Arduino</a> development environment. The firmware source code is provided as an Arduino sketch.</p>
+
+<p>After the firmware is compiled, the executable code must be downloaded to the microcontroller. There are a few different ways to do this.</p>
+
+<h1><a name="in-place"></a>In-Place Programming</h1>
+<p>The modules that I designed have a serial programming header so they can be programmed just like an Arduino board. To program a module this way you will need:</p>
+<ul>
+<li>An ATmega328P microcontroller that is pre-programmed with the Arduino bootloader (available
+<a href="https://store-usa.arduino.cc/collections/accessories/products/atmega328-microcontroller-bootloader-uno">here</a>,
+<a href="https://www.adafruit.com/product/123">here</a>, or
+<a href="https://www.sparkfun.com/products/10524">here</a>)</li>
+<li>An FTDI USB to TTL serial cable, 5-volt version (available
+<a href="https://www.adafruit.com/product/70">here</a> or
+<a href="https://www.sparkfun.com/products/9718">here</a>)</li>
+<li>A computer running the Arduino software
+(<a href="https://www.arduino.cc/en/software">download</a>)</li>
+</ul>
+
+<p>To program the module’s firmware:</p>
+<ol>
+<li><strong>Important:</strong> Make sure the module is <strong>not</strong> powered. Either turn off the Eurorack system’s power or unplug the Eurorack power cable from the module.</li>
+<li>Connect the module to the computer using the FTDI USB-serial cable. The header connector on the cable connects to the 6-pin header on the module. <strong>Make sure</strong> it's connected the right way around. The black wire is ground.</li>
+<li>On the computer, run the Arduino IDE software and load the appropriate sketch (<kbd>.ino</kbd> file) for the module.</li>
+<li>In the <kbd>Tools</kbd> menu, select these settings:
+    <ul>
+    <li><kbd>Board</kbd>: Select “<kbd>Arduino Duemilanove or Diecimila</kbd>” or “<kbd>Arduino Uno</kbd>” depending on which bootloader is on the chip</li>
+    <li><kbd>Processor</kbd>: <kbd>ATmega328P</kbd></li>
+    <li><kbd>Port</kbd>: Select the port corresponding to the FTDI USB-serial cable</li>
+    </ul>
+</li>
+<li>Select the <kbd>Sketch > Upload</kbd> command to compile and upload the firmware.</li>
+<li>Unplug the FTDI cable and re-connect the module’s power cable.</li>
+</ol>
+
+<h1><a name="otherwise"></a>Other Methods</h1>
+<p>TODO</p>
+
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col>© 2022 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</g-col></g-row></footer>
+
+</body>
+</html>
