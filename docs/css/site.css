@@ -344,9 +344,15 @@ body > header nav {
     font-style: italic;
 }
 
+/* Header linkline is a <ul> with inline <li> formatting */
 body > header nav ul {
     padding: 0;
     margin-bottom: 1em;
+}
+
+body > header nav ul::before {
+    content: url(dingsh.gif);
+    padding-right: 0px;
 }
 
 body > header nav li {
@@ -361,11 +367,6 @@ body > header nav li {
 body > header nav li:first-child {
     padding-left: 0;
 	border-left: none;
-}
-
-body > header nav li:first-child::before {
-    content: url(dingsh.gif);
-    padding-right: 4px;
 }
 
 body > header nav a {
