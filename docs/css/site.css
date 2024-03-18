@@ -295,8 +295,8 @@ li > p {
 }
 
 dl {
-    padding-left: 2em;
-	list-style: outside;
+    padding-left: 1em;
+	list-style: inside;
 	list-style-image: url(dings.gif);
 }
 
@@ -308,6 +308,31 @@ dl dt {
 
 dl dd {
     margin-left: 1em;
+}
+
+/* KLUDGE: To get <dt> and <dd> on the same line, put them in a <div>.
+   (I want to make <dl> do that without <div> but sadly that's not possible.) */
+dl > div {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+dl > div > dt {
+    display: inline;
+}
+
+dl > div > dt::before {
+    content: url(dings.gif);
+    padding-right: 7px; /* width: doesn't work */
+}
+
+dl > div > dd {
+    display: inline;
+    margin-left: 0;
+}
+
+dl > div > dd::before {
+    content: " \2014  ";
 }
 
 /* TODO: can merge this with li > p? */
