@@ -1,0 +1,413 @@
+/*
+TODO:
+- table
+- form controls
+- other stuff??
+*/
+
+/*
+Expectations:
+<body> directly contains only one each of <header>, <main>, <footer> in that order.
+Additional <header> and <footer> elements may appear nested, e.g. <blockquote><footer>.
+*/
+
+@viewport {
+    zoom: 1.0;
+    width: extend-to-zoom;
+}
+
+* {
+    box-sizing: border-box
+}
+  
+html {
+    text-size-adjust: 100%;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    height: 100%;
+}
+
+body {
+    /* Page width is set in sub-elements so the header can be full width. */
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 100px; /* This is room for the footer */
+}
+
+body:last-child {
+    margin-bottom: 3rem;
+}
+
+body > header {
+    /* Header image is full screen width; contained elements are the nominal page width. */
+    padding-top: 1rem;
+    padding-bottom: 0.1rem;
+	color: rgb(168,200,220);
+	background: rgb(51,103,153) url(header.jpg) no-repeat top right -250px;
+}
+
+body > header hgroup,
+body > header nav {
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding-right: 45px;
+    padding-left: 45px;
+}
+
+main {
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 0px;
+}
+  
+body > footer {
+    min-width: 200px;
+    max-width: 980px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-left: 45px;
+    padding-right: 45px;
+    border: solid rgb(168,200,220);
+    border-width: 0.2rem 0 0 0;
+	color: rgb(51,103,153);
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+a:link {
+	color: rgb(51,103,153);
+	text-decoration: none;
+}
+
+a:visited  {
+	color: rgb(128,128,128);
+	text-decoration: none;
+}
+
+a:active, a:hover {
+	text-decoration: underline;
+}
+
+em {
+    font-weight: italic
+}
+
+strong {
+    font-weight: bold
+}
+
+cite {
+    font-style: italic;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h1 {
+    margin: 0.67em 0;
+    padding-bottom: 0.3em;
+    padding-left: 20px;
+    font-size: 2em;
+	color: rgb(51,103,153);
+    border-bottom: 1px solid rgb(168,200,220);
+	background: url(ding.png) no-repeat left top 40%;
+}
+
+h2 {
+    padding-bottom: 0.3em;
+    padding-left: 20px;
+    font-size: 1.5em;
+	color: rgb(51,103,153);
+    border-bottom: 1px solid rgb(168,200,220);
+	background: url(ding.png) no-repeat left top 40%;
+}
+
+h3 {
+    font-size: 1.25em;
+	color: rgb(51,103,153);
+}
+
+h4 {
+    font-size: 1em;
+    color: #6a737d;
+}
+  
+h5 {
+    font-size: 0.875em;
+    color: #6a737d;
+}
+  
+h6 {
+    font-size: 0.85em;
+}
+
+hgroup p {
+	font-style: italic;
+    margin-bottom: 0.5em;
+}
+
+img {
+    max-width: 100%;
+    box-sizing: content-box;
+    border-style: none;
+    margin: 0.2rem 0.2rem 0.2rem 0;
+    vertical-align: middle
+}
+
+code,
+kbd {
+    font-family: Hack, monospace;
+    font-size: 0.85em;
+}
+
+/* Code can be used as either an inline span or a block element. */
+code {
+    display: block;
+    white-space: pre;
+    margin: 0;
+    padding: 0.3em 0.3em;
+	color: rgb(51,103,153);
+    background-color: rgb(217,227,237);
+    border-radius: 3px;
+}
+
+p code { /* TODO: add other container elements as required */
+    display: inline-block;
+    padding: 0 0.3em;
+}
+
+kbd {
+    display: inline-block;
+	color: rgb(51,103,153);
+}
+
+/* Nested <kbd> element will outline the inner contents, for things like
+   <kbd><kbd>Ctrl</kbd>+<kbd>X</kbd></kbd> for "Ctrl+X" */
+kbd > kbd {
+    padding: 0 0.25em;
+    border-radius: 3px;
+    border: solid rgb(51,103,153) 1px;
+}
+  
+/* TODO: some of this might be redundant */
+/* TODO: details for some of these */
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+blockquote {
+    padding: 0 0 0 2em;
+    margin-top: 0;
+    margin-left: 0;
+	color: rgb(51,103,153);
+    background: url("quote.png") top left no-repeat;
+}
+    
+blockquote > :first-child {
+    margin-top: 0;
+}
+
+blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+blockquote footer {
+    display: block;
+    margin-left: 1em;
+}
+
+blockquote footer::before {
+    display: inline;
+    content: "\2014  "
+}
+
+ul,
+ol {
+    padding-left: 2em;
+}
+
+ul {
+    list-style-image: url(dings.gif);
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ol ol,
+ul ol {
+    list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+    list-style-type: lower-alpha;
+}
+
+li > p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+dl {
+    padding-left: 2em;
+	list-style: outside;
+	list-style-image: url(dings.gif);
+}
+
+dl dt {
+    display: list-item;
+	font-weight: bold;
+	color: rgb(51,103,153);
+}
+
+dl dd {
+    margin-left: 1em;
+}
+
+/* TODO: can merge this with li > p? */
+dd > p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+body > header h1 {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+    padding: 0;
+    font-size: 5vmin;
+	color: rgb(168,200,220);
+    border-bottom: none;
+    background: none;
+}
+
+body > header a,
+body > header a:link,
+body > header a:visited {
+	color: rgb(168,200,220);
+	text-decoration: none;
+}
+
+body > header a:active,
+body > header a:hover {
+	color: rgb(168,200,220);
+	text-decoration: underline;
+}
+
+body > header nav {
+    font-style: italic;
+}
+
+body > header nav ul {
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+body > header nav li {
+    display: inline;
+	list-style-type: none;
+    padding-left: 6px;
+    padding-right: 2px;
+	border-left: 1px solid rgb(168,200,220);
+    font-size: 0.85em;
+}
+
+body > header nav li:first-child {
+    padding-left: 0;
+	border-left: none;
+}
+
+body > header nav li:first-child::before {
+    content: url(dingsh.gif);
+    padding-right: 4px;
+}
+
+body > header nav a {
+    font-style: normal;
+    font-weight: bold;
+}
+
+hr {
+    box-sizing: content-box;
+    overflow: hidden;
+    background: transparent;
+    height: 0.1rem;
+    padding: 0;
+    margin: 24px 0;
+	background-color: rgb(168,200,220);
+    border: 0;
+}
+
+hr::before {
+    display: table;
+    content: "";
+}
+
+hr::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+/* custom grid layout tags */
+g-row {
+    display: block
+}
+
+g-col {
+    display: inline
+}
+
+@media (min-width: 50rem) {
+    g-row {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+    g-col {
+        display: table-cell;
+        padding-right: 2%;
+    }
+
+    g-col:last-child {
+        padding-left: 2%;
+        padding-right: 0;
+    }
+}
