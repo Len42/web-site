@@ -174,13 +174,11 @@ img {
     vertical-align: middle
 }
 
-/* <img class="side"> makes the image float to the right, but only if the screen
-   is wide enough. Note: Large images will not look good. */
-@media (min-width: 40rem) {
-    img.side {
-        float: right;
-        margin: 0.2rem 0 0.2rem 0.5rem;
-    }
+/* <img class="side"> floats the image to the right of the page */
+img.side {
+    float: right;
+    margin: 0.2rem 0 0.2rem 0.5rem;
+    max-width: 50%;
 }
 
 code,
@@ -311,17 +309,20 @@ dl dd {
 }
 
 /* KLUDGE: To get <dt> and <dd> on the same line, put them in a <div>.
-   (I want to make <dl> do that without <div> but sadly that's not possible.) */
+   (I want to make <dl> do that without <div> but sadly that's not possible.)
+   Hanging indentation for the dingbat makes it more complicated too. */
 dl > div {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    padding-left: 1em;
+    text-indent: -1em;
 }
 
 dl > div > dt {
     display: inline;
 }
 
-dl > div > dt::before {
+dl > div::before {
     content: url(dings.gif);
     padding-right: 7px; /* width: doesn't work */
 }
@@ -335,10 +336,11 @@ dl > div > dd::before {
     content: " \2014  ";
 }
 
-/* TODO: can merge this with li > p? */
 dd > p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    margin-left: 0;
+    text-indent: 0;
 }
 
 body > header h1 {
