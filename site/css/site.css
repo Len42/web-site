@@ -403,11 +403,11 @@ g-col {
 
     g-col {
         display: table-cell;
-        padding-right: 2%;
+        padding-right: 0.1rem;
     }
 
     g-col:last-child {
-        padding-left: 2%;
+        padding-left: 0.1rem;
         padding-right: 0;
     }
 }
