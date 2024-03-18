@@ -105,7 +105,8 @@ em {
 }
 
 strong {
-    font-weight: bold
+    font-weight: bold;
+	color: rgb(51,103,153);
 }
 
 cite {
@@ -304,6 +305,10 @@ ul ol ol,
 ol ul ol,
 ol ol ol {
     list-style-type: lower-alpha;
+}
+
+li::marker {
+	color: rgb(51,103,153);
 }
 
 li > p {
