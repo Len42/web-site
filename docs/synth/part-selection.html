@@ -42,13 +42,57 @@ sometimes it doesn’t.</p>
 substituted with any part with similar specs. Here are some rules of thumb for
 choosing these.</p>
 
-<p>TODO</p>
+<h2>Resistors</h2>
+<p>Most of the resistors I use are low-power metal film resistors with 1% precision.
+These are inexpensive, easily available, and stable. Most of the listed parts
+have a power rating of 1/6 W (166 mW) just because those are easy for me to get;
+anything down to 1/10 W (100 mW) should be fine.</p>
+
+<p>Current-limiting resistors (for module outputs and LEDs) are specified for
+1/4 W, just in case.</p>
+
+<p>There are a few places where high-precision resistors are required.
+These are noted on the schematic.</p>
+
+<h2>Capacitors</h2>
+<p>
+Electrolytic capacitors should have a voltage rating of at least 25 V DC,
+unless otherwised noted.</p>
+
+<p>Decoupling caps for ICs are 100 nF ceramic, any make.</p>
+
+<p>Capacitors in the audio signal path are mostly specified as film types,
+but good quality ceramic caps (C0G, NP0) can probably be used in many cases.</p>
+
+<p>There are a few places where film capacitors with high stability and low
+leakage are required. These are noted on the schematic.</p>
+
+<h2>Transistors</h2>
+<p>For bipolar transistors I use 2N3904 (NPN) and 2N3906 (PNP). Other
+general-purpose transistors can be used (e.g. BC548/558) but may require minor
+circuit adjustments. If in doubt, test the circuit on a breadboard.</p>
 
 <h1><a name="opamps"></a>Op Amps</h1>
-<p>TODO</p>
+<p>I use TL07x series op amps in my modules. These are widely used in synthesizers.
+Pretty much any op amp with a standard pinout that can operate on a +/- 12 V
+supply can probably be substituted.</p>
 
-<h1><a name="panels"></a>Panels</h1>
-<p>TODO</p>
+<h1><a name="panels"></a>Front Panel Parts</h1>
+<p>Jacks, switches, and potentiometers on the front panel must be as specified,
+or substituted with parts that have the same footprint and physical dimensions.
+These parts are soldered directly to a PCB and also fixed to the front panel, so
+they have to fit properly. The components that I use are ones that are commonly
+used in the synth DIY community. I have tried to list multiple sources for these
+in the BOM.</p>
+
+<p>The Alpha potentiometers are available with different shafts:
+6.35 mm (1/4 inch) round, 6 mm knurled, or 6 mm D-shape. Use any of these,
+just make sure to get knobs that fit.</p>
+
+<h2>Knobs</h2>
+<p>Potentiometers need knobs, but I have not listed any in my BOMs because they
+are a matter of taste. They also need to fit the selected potentiometers
+(see above).</p>
 </main>
 
 <footer>
