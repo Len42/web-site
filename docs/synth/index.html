@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Synth</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>Synth - Len’s Stuff</h1>
+<p>Designs for my homebrew Eurorack synthesizer modules</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="#info">Info</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#misc">Other</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<a href="synth-photo2.jpg"><img src="synth-photo2.jpg" class="side" alt="Modular synthesizer"></a>
+
+<p>My modular synthesizer designs are shared in
+<a href="https://github.com/Len42/Synth">this repository</a>.</p>
+<p>Please note that I am a hobbyist, not a trained electronics engineer!
+These designs are not perfect. The modules work for me, but I can't promise
+they'll work for everyone who builds them.</p>
+<p>These designs are shared as open source. See the license details in each
+project and source file.</p>
+<p>&mdash; Len</p>
+
+<h1><a name="info"></a>General Info</h1>
+<dl>
+    <div><dt><a href="panels.html">Front Panels</a></dt>
+    <dd>How I make the front panels for my modules</dd></div>
+    <div><dt><a href="part-selection.html">Component Selection</a></dt>
+    <dd>Some notes on which parts to use when building these modules</dd></div>
+    <div><dt><a href="eurorack-bus-cv-gate.html">Eurorack Bus CV and Gate</a></dt>
+    <dd>Spaghetti reduction</dd></div>
+    <div><dt><a href="firmware-programming.html">Firmware Programming</a></dt>
+    <dd>How to program the firmware onto the microcontrollers in some modules</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/discussions">Discussions</a></dt>
+    <dd>Forum for questions, comments, and conversations</dd></div>
+    </dl>
+
+<h1><a name="modules"></a>Modules</h1>
+<img src="../assets/synth-photo.jpg" class="side" alt="Modular synthesizer">
+<p>These are the modules that I have built.</p>
+<dl>
+    <div><dt><a href="https://github.com/Len42/Dexy">Dexy</a></dt>
+    <dd>DX7-inspired FM synthesis with a Raspberry Pi Pico</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Filter2">Filter2</a></dt>
+    <dd>Dual filter module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Switches">Switches</a></dt>
+    <dd>4-channel muting module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/VCF-SV">VCF-SV</a></dt>
+    <dd>State-variable filter module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Adder">Adder</a></dt>
+    <dd>Unity-gain mixer / precision adder</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/FX">FX</a></dt>
+    <dd>Digital effects module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Attenuverter">Attenuverter</a></dt>
+    <dd>Dual attenuverter module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/VCF-4P">VCF-4P</a></dt>
+    <dd>4-pole lowpass filter module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Mixer1">Mixer1</a></dt>
+    <dd>Small mixer module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Mixer2">Mixer2</a></dt>
+    <dd>Dual mixer module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Buff-Mult">Buff-Mult</a></dt>
+    <dd>Buffered multiples</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Bus-Driver">Bus-Driver</a></dt>
+    <dd>Driver module for Eurorack bus CV & gate signals</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/VCA-4">VCA-4</a></dt>
+    <dd>Quad exponential VCA</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Audiout">Audiout</a></dt>
+    <dd>Audio output module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/VCO-2131">VCO-2131</a></dt>
+    <dd> Analog VCO based on the SSI2131 chip</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Envelope2">Envelope2</a></dt>
+    <dd>Dual ADSR envelope module, microcontroller-based</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Wavefolder">Wavefolder</a></dt>
+    <dd>Dual analog wavefolder module</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/LFO-DigiVC">LFO-DigiVC</a></dt>
+    <dd>Voltage-controlled LFO, microcontroller-based</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/modules/Noise-SH">Noise-SH</a></dt>
+    <dd>Noise, sample-and-hold, and trigger clock, all in one module</dd></div>
+</dl>
+
+<h1><a name="misc"></a>Not Modules</h1>
+<dl>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/misc/Power-Supply">Power-Supply</a></dt>
+    <dd>Eurorack power supply using a laptop charger</dd></div>
+    <div><dt><a href="https://github.com/Len42/Synth/tree/main/misc/cable-hanger">Cable Hanger</a></dt>
+    <dd>Simple desk-mounted patch cable rack</dd></div>
+</dl>
+
+</main>
+
+<footer>
+    <g-row>
+        <g-col style="width: 110px; vertical-align: middle">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+            <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+        </g-col>
+        <g-col>
+            © 2022-2024 Len Popp<br>
+            This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+        </g-col>
+    </g-row>
+</footer>
+
+</body>
+</html>
