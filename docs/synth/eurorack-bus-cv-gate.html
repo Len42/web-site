@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Eurorack CV &amp; Gate - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>Eurorack CV &amp; Gate</h1>
+<p>Handling the Eurorack bus CV and gate signals</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<p>Some of <a href="index.html#modules">my modules</a> take advantage of the CV
+and gate lines that are available in the
+<a href="https://doepfer.de/a100_man/a100t_e.htm">16-pin Eurorack power cable</a>
+to eliminate some of the patching spaghetti that I don’t usually change.</p>
+<p>Basically, modules that have either a
+<a href="https://github.com/Len42/Synth/tree/main/modules/Envelope2">gate input</a>
+or a volt-per-octave
+<a href="https://github.com/Len42/Synth/tree/main/modules/VCO-2131">pitch input</a>
+will take that signal from the Eurorack bus when the input is unpatched.
+Patching a signal into the input jack overrides the signal from the bus.</p>
+
+<p>If this feature is not wanted, it can be disabled by a jumper on the back of the module.
+The jumper’s “enabled” position is marked by an underline, as shown in the photo below.</p>
+
+<p>To put gate and pitch CV signals <em>onto</em> the Eurorack bus, I use my
+<a href="https://github.com/Len42/Synth/tree/main/modules/Bus-Driver">Bus-Driver module</a>.
+The CV and gate signals come from either a keyboard or an
+<a href="https://www.expert-sleepers.co.uk/es8.html">interface module</a>.</p>
+
+<g-row>
+<g-col><figure>
+<img src="eurorack-bus-on.jpg">
+<figcaption>Jumper is set to take pitch CV from the bus by default.
+Note the underline indicating the enabled position.</figcaption>
+</figure></g-col>
+<g-col><figure>
+<img src="eurorack-bus-off.jpg">
+<figcaption>Default-from-bus jumper,<br>disabled position.</figcaption>
+</figure></g-col>
+<g-col><figure>
+<img src="eurorack-bus-driver.jpg">
+<figcaption>Bus Driver module</figcaption>
+</figure></g-col>   
+</g-row>
+
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col>© 2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</g-col></g-row></footer>
+
+</body>
+</html>
