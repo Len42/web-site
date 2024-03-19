@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>RP2040 Windows Dev Setup - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>RP2040 Windows Dev Setup</h1>
+<p>C/C++ dev environment for the Raspberry Pi Pico and RP2040, on Windows</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#toolchain">Toolchain</a></li>
+<li><a href="#zzzz">ZZZZ</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<h1><a name="intro"></a>RP2040 Dev Setup on Windows</h1>
+<p>Here is how to install and configure a C/C++ development environment for the <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> and other <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040</a> dev boards, using the <a href="https://www.raspberrypi.com/documentation/pico-sdk/">Raspberry Pi Pico SDK</a> and <a href="https://code.visualstudio.com/">Visual Studio Code</a> on Windows. All of the software except Windows is available at no cost.</p>
+
+<p>This is a fairly involved process. For a simpler solution, you may wish to use the <a href="https://www.arduino.cc/">Arduino</a> IDE which can be configured to support RP2040 boards (see <a href="https://arduino-pico.readthedocs.io/en/latest/">here</a> for example).</p>
+
+<p><em>Note:</em> These instructions are up to date as of 2022-04-24.</p>
+
+<h2>Acknowledgements</h2>
+<p>These instructions mostly follow these video tutorials by <cite>Learn Embedded Systems</cite>:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=mUF9xjDtFfY"><cite>How to Set Up Visual Studio Code to Program the Pi Pico</cite></a></li>
+<li><a href="https://www.youtube.com/watch?v=Q1Kfg8k54jM"><cite>How to Set Up a Project in Visual Studio Code for the Pi Pico</cite></a></li>
+</ul>
+
+<h1><a name="toolchain"></a>Toolchain Installation</h1>
+<h2>ARM GCC Compiler</h2>
+<p>Go to the download page for the Arm GNU Toolchain:
+<a href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads">https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads</a></p>
+
+<p>Download and run the installer for Windows host and AArch32 bare-metal target (arm-none-eabi).</p>
+
+<p><em>Note:</em> In the installer, select “Add path to environment variable”.</p>
+
+<h2>CMake</h2>
+<p>Go to the CMake download page: <a href="https://cmake.org/download/">https://cmake.org/download/</a>. Download and run the 64-bit Windows installer.</p>
+
+<p><em>Note:</em> In the installer, select “Add Cmake to the system PATH for all users”.</p>
+
+<h2>Visual Studio Build Tools</h2>
+<p>There are two ways to install the Visual Studio Build Tools. Either:</p>
+
+<ul><li>Install the “Build Tools for Visual Studio” package. It seems that Microsoft no longer supports this package, but as of now the 2019 version is available here: <a href="https://aka.ms/vs/16/release/vs_buildtools.exe">https://aka.ms/vs/16/release/vs_buildtools.exe</a></li></ul>
+<p>Or:</p>
+<ul><li>Download Visual Studio 2022 Community Edition from here: <a href="https://visualstudio.microsoft.com/downloads/">https://visualstudio.microsoft.com/downloads/</a>. Be sure to install the C++ development tools. This is a much larger install. Visual Studio 2019 will also work, if you have that already.</li></ul>
+
+<h2>Python 3</h2>
+<p>Go to the Python download page: <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>. Download and run the 64-bit Windows installer for the current stable version.</p>
+
+<p><em>Note:</em> In the installer, select "Add Python to PATH", and if prompted to remove the max path length, do so.</p>
+
+
+<p>TODO</p>
+
+
+
+<h1><a name="conclusion"></a>Conclusion</h1>
+<p>Final section.</p>
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col>© 2022-2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</g-col></g-row></footer>
+
+</body>
+</html>
