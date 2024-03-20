@@ -7,7 +7,7 @@ TODO:
 
 /*
 Expectations:
-<body> directly contains only one each of <header>, <main>, <footer> in that order.
+<body> directly contains one each of <header>, <main>, <footer> in that order, and nothing else.
 Additional <header> and <footer> elements may appear nested, e.g. <blockquote><footer>.
 */
 
@@ -166,6 +166,12 @@ h6 {
 hgroup p {
 	font-style: italic;
     margin-bottom: 0.5em;
+}
+
+hgroup p i,
+hgroup p em,
+hgroup p cite {
+    font-style: normal;
 }
 
 img {
@@ -390,8 +396,18 @@ body > header a:hover {
 	text-decoration: underline;
 }
 
+body > header strong {
+	color: inherit;
+}
+
 body > header nav {
     font-style: italic;
+}
+
+body > header nav i,
+body > header nav em,
+body > header nav cite {
+    font-style: normal;
 }
 
 /* Header linkline is a <ul> with inline <li> formatting */
@@ -422,10 +438,6 @@ body > header nav li:first-child {
 body > header nav a {
     font-style: normal;
     font-weight: bold;
-}
-
-body > header strong {
-	color: inherit;
 }
 
 hr {
