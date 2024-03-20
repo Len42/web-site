@@ -1,43 +1,94 @@
 <!DOCTYPE html>
 <html lang="en-CA">
 <head>
-<title>Demo Page - Len’s Stuff</title>
+<title>ToyBot - Len’s Stuff</title>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
 </head>
 <body>
 <header>
 <hgroup>
-<h1>Demo Page</h1>
-<p>A demo of a styled HTML page</p>
+<h1>ToyBot</h1>
+<p>A toy car that drives around by itself</p>
 </hgroup>
 <nav>
 <ul>
-<li><a href="#intro">Intro</a></li>
-<li><a href="#main">Main</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#hardware">Hardware</a></li>
+<li><a href="#behaviour">Behaviour</a></li>
 <li><a href="/">Home</a></li>
 </ul>
 </nav>
 </header>
 
 <main>
-<h1><a name="intro"></a>Intro</h1>
-<p>Introduction.</p>
 
-<h1><a name="main"></a>Main</h1>
-<p>Main section.</p>
+<p>Updated: 2009-09-20, 2022-02-10</p>
 
-<h1><a name="conclusion"></a>Conclusion</h1>
-<p>Final section.</p>
+<h1><a name="overview"></a>Overview</h1>
+<p>I wanted to make a small robot that could sense its surroundings and wander around by itself. I used a toy RC car, an <a href="http://arduino.cc/">Arduino microcontroller</a>, and light and temperature sensors.</p>
+
+<h2>Video</h2>
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/lenp17/3672393168/" title="ToyBot In Action"><img src="https://live.staticflickr.com/3662/3672393168_98ceb66158_n.jpg" width="320" height="240" alt="ToyBot In Action"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<h2>Pictures</h2>
+<p>There are more pictures, some with annotations, <a href="http://www.flickr.com/photos/36366608@N06/sets/72157620585872921/">here</a>.</p>
+
+<h1><a name="hardware"></a>Hardware</h1>
+<p>I started out with this toy RC car from <a href="http://www.kidgalaxy.com/">Kid Galaxy</a>:</p>
+<a href="truck.jpg"><img src="truck.jpg" alt="toy truck"></a>
+
+<p>I chose that car because it can spin in place by driving its wheels in opposite directions. That makes it much easier to steer than other cheap RC cars with crappy front-wheel steering, even though it can only turn in one direction.</p>
+
+<p>I took out the radio-control electronics and replaced them with an <a href="http://arduino.cc/">Arduino microcontroller</a> and an <a href="https://www.adafruit.com/product/81">Adafruit Motor Shield</a>. I added a few other parts:</p>
+<ul>
+<li>A CdS photocell light sensor</li>
+<li>An LM35 temperature sensor</li>
+<li>A bump switch to detect obstacles</li>
+<li>An LED activity indicator</li>
+</ul>
+
+<p><a href="toybot-fritzing.png">Click here</a> for a breadboard diagram of how the sensors
+are hooked up to the Arduino. (This doesn’t show the Motor Shield and motor connections.)</p>
+
+<p>I had to remove the car body and hack up the chassis a bit, and here’s what I ended up with.
+(Click for an annotated version of the picture.)</p>
+<a href="http://www.flickr.com/photos/36366608@N06/3672562688/in/set-72157620585872921/"><img src="toybot.jpg" alt="ToyBot"></a>
+
+<p>Everything connected to the Arduino can be unplugged easily, in case I need to use the Arduino for something else (because I don’t have any spare Arduini).
+I made this easier by using some of the Arduino’s analog input pins as digital pins, for the LED and the bump switch. That let me plug most of the wires from the sensor board into one header block.</p>
+
+<p>There are two separate power supplies. The 3 AA cells that originally powered the toy car are still used to run the motor, and a 9V battery powers the Arduino.
+I find this inconvenient. There are too many batteries to replace and the 9V doesn’t last very long.
+With the Motor Shield it’s usually a good idea to use separate power supplies for the motors and the Arduino, but I think a common supply would be OK with the one small DC motor I’m using. Unfortunately the 4.5 V supply for the motor isn’t enough for the Arduino.</p>
+
+<h1><a name="behaviour"></a>Behaviour</h1>
+<p>I wrote an Arduino sketch to control ToyBot’s behaviour, using input from the light, temperature and bump sensors. Its basic behaviour is to drive toward an area of bright light. If it gets too hot, it heads for a shady area instead. (Basically, ToyBot acts like a cat.)</p>
+
+<p>The behaviour rules are:</p>
+<ul>
+<li>Find the direction where the brightest light is, by spinning in place while monitoring the light sensor.</li>
+<li>Drive toward the light.</li>
+<li>When the light gets dimmer, stop and scan again to find where the light is.</li>
+<li>If the temperature gets too high, change the above behaviour to seek darkness instead of light.</li>
+<li>If the bump switch detects that the bot has hit something, turn around and head in the opposite direction.</li>
+<li>If the bot spins around without finding a particularly bright (or dark) direction to go, it goes to sleep.</li>
+<li>If the bot only drives a short distance several times in a row, it goes to sleep. (This stops it if it’s moving around in a small patch of light.)</li>
+<li>If the bot is sleeping, it wakes up when there’s a significant change in brightness or temperature.</li>
+</ul>
+
+<p>The LED activity indicator lights up or blinks to indicate what the bot is doing.</p>
+
+<p><a href="https://github.com/Len42/ToyBot/blob/main/ToyBot.pde">Here is the source code</a> for the Arduino sketch that controls ToyBot’s behaviour.</p>
+
 </main>
 
 <footer><g-row><g-col style="width: 110px; vertical-align: middle">
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
 <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
 </g-col>
-<g-col>© 2024 Len Popp<br>
+<g-col>© 2009, 2022 Len Popp<br>
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </g-col></g-row></footer>
 
