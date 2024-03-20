@@ -1,14 +1,12 @@
-/*
-TODO:
-- table
-- form controls
-- other stuff??
+/* Stylesheet for Len's web site
+   Expectations: <body> directly contains one each of <header>, <main>, <footer>
+   in that order, and nothing else. (Additional <header> and <footer> elements
+   may appear nested, e.g. <blockquote><footer>.)
 */
 
-/*
-Expectations:
-<body> directly contains one each of <header>, <main>, <footer> in that order, and nothing else.
-Additional <header> and <footer> elements may appear nested, e.g. <blockquote><footer>.
+/* TODO:
+   - table
+   - forms
 */
 
 @viewport {
@@ -31,7 +29,7 @@ html {
 }
 
 body {
-    /* Page width is set in sub-elements so the header can be full width. */
+    /* Page width is set in children so the header can be full width. */
     margin: 0 auto;
     position: relative;
     padding-bottom: 100px; /* This is room for the footer */
@@ -243,7 +241,6 @@ kbd > kbd {
 }
   
 /* TODO: some of this might be redundant */
-/* TODO: details for some of these */
 p,
 blockquote,
 ul,
