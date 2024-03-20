@@ -424,6 +424,10 @@ body > header nav a {
     font-weight: bold;
 }
 
+body > header strong {
+	color: inherit;
+}
+
 hr {
     box-sizing: content-box;
     overflow: hidden;
