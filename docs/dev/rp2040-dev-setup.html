@@ -14,9 +14,8 @@
 </hgroup>
 <nav>
 <ul>
-<li><a href="#intro">Intro</a></li>
 <li><a href="#toolchain">Toolchain</a></li>
-<li><a href="#zzzz">ZZZZ</a></li>
+<li><a href="#project">Project</a></li>
 <li><a href="/">Home</a></li>
 </ul>
 </nav>
@@ -61,15 +60,172 @@
 <h2>Python 3</h2>
 <p>Go to the Python download page: <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>. Download and run the 64-bit Windows installer for the current stable version.</p>
 
-<p><em>Note:</em> In the installer, select "Add Python to PATH", and if prompted to remove the max path length, do so.</p>
+<p><em>Note:</em> In the installer, select “Add Python to PATH”, and if prompted to remove the max path length, do so.</p>
 
+<h2>Git</h2>
+<p>Go to the Git download page: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>.</p>
 
-<p>TODO</p>
+<p>Download and run the 64-bit Windows installer.</p>
 
+<p>Select these options in the installer:</p>
+<ul>
+<li><em>Destination Location: </em>Default (or not)</li>
+<li><em>Select Components: </em>Default</li>
+<li><em>Default editor: </em>Select one you like</li>
+<li><em>Name of the initial branch: </em>Let Git decide</li>
+<li><em>PATH environment: </em>Git from the command line and also from 3rd-party software</li>
+<li><em>SSH executable: </em>Use bundled OpenSSH</li>
+<li><em>HTTPS transport backend: </em>Use the OpenSSL library</li>
+<li><em>Line ending conversion: </em>Checkout as-is, commit as-is</li>
+<li><em>Terminal emulator for Git Bash: </em>Select either option</li>
+<li><em>Default behavior of "git pull": </em>Default (f-f or merge)</li>
+<li><em>Credential helper: </em>Default (Git Credential Manager Core)</li>
+<li><em>Extra options: </em>Default (Enable file system caching on, Enable symbolic links off)</li>
+<li><em>Experimental options: </em>Select “Enable experimental support for pseudo consoles”</li>
+</ul>
 
+<h2>Raspberry Pi Pico SDK</h2>
+<p>Make a new directory named <kbd>Pico</kbd> (or anything else) where you wish to store the Pico SDK and your development projects.</p>
 
-<h1><a name="conclusion"></a>Conclusion</h1>
-<p>Final section.</p>
+<p>Open a Windows command window (or Git Bash shell) and <kbd>cd</kbd> to that directory.</p>
+
+<p>Clone the Pico SDK and example code into a local git repo:</p>
+<code>git clone -b master https://github.com/raspberrypi/pico-sdk.git
+    <i>Or, if an SSL private key has been configured:</i>
+    git clone -b master git@github.com:raspberrypi/pico-sdk.git
+cd pico-sdk
+git submodule update --init
+cd ..
+git clone -b master https://github.com/raspberrypi/pico-examples.git
+    <i>Or, if an SSL private key has been configured:</i>
+    git clone -b master git@github.com:raspberrypi/pico-examples.git
+</code>
+
+<h2>Test Build</h2>
+<p>Open a <kbd>Developer Command Prompt</kbd> by searching for that in the Start menu.</p>
+
+<p>Navigate (<kbd>cd</kbd>) to the <kbd>Pico</kbd> directory created above.</p>
+
+<p>Set the path to the Pico SDK (only needs to be done once, not every time a build is done):</p>
+<code>setx PICO_SDK_PATH "..\..\pico-sdk"</code>
+
+<p><em>Note:</em> The absolute pathname of the <kbd>pico-sdk</kbd> directory may be used here instead of a relative pathname (e.g. <kbd>C:\Dev\Pico\pico-sdk</kbd>).</p>
+
+<p>Close and re-open the <kbd>Developer Command Prompt</kbd> window to load that change. Navigate to the <kbd>Pico</kbd> directory again.</p>
+
+<p>Build the Pico example projects:</p>
+<code>cd pico-examples
+    mkdir build
+    cd build
+    cmake -G "NMake Makefiles" ..
+        <i>Or, with an RP2040 board other than the Pi Pico (see src/boards/include/boards):</i>
+        cmake -D"PICO_BOARD=adafruit_feather_rp2040" -G "NMake Makefiles" ..
+    nmake
+</code>
+
+<p><em>Note:</em> This will take some time.</p>
+
+<p>Find the file <kbd>blink.uf2</kbd> in the <kbd>pico-examples\build\blink</kbd> directory.</p>
+
+<p>Connect the Pi Pico (or other RP2040 dev board) to the PC while pressing the Pico's <kbd>BOOTSEL</kbd> button.</p>
+
+<p>Open the Pi Pico device in Windows Explorer.</p>
+
+<p>Drag <kbd>blink.uf2</kbd> to the Pico's storage.</p>
+
+<p>The Pico's LED should start blinking.</p>
+
+<h2>Visual Studio Code</h2>
+<p>Go to the VS Code download page: <a href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a>.</p>
+
+<p>Download and run the 64-bit Windows installer.</p>
+
+<p>Open a Developer Command Prompt and type <kbd>code</kbd> to run VS Code.</p>
+
+<p><em>Note:</em> VS Code must always be run from a Developer Command Prompt window, otherwise it 
+will not be able to find the build tools.</p>
+
+<h2>CMake Tools Extensions</h2>
+<p>In VS Code, click on the <kbd>Extensions</kbd> button on the left.</p>
+
+<p>Search for these extensions and install both of them:</p>
+<ul>
+<li>CMake Tools</li>
+<li>CMake Language Support</li>
+</ul>
+
+<p>Navigate to the <kbd>CMake Tools settings</kbd>: Click on the <kbd>Manage</kbd> button in the bottom-left, then select <kbd>Settings</kbd>, then <kbd>Extensions</kbd>, then <kbd>CMake Tools</kbd>.</p>
+
+<p>Under <kbd>Cmake: Configure Environment</kbd>, click <kbd>Add Item</kbd> and add an item named <kbd>PICO_SDK_PATH</kbd> with the value <kbd>..\..\pico-sdk</kbd>.  (Again, the absolute pathname may be used instead, e.g. <kbd>C:\Dev\Pico\pico-sdk</kbd>.)</p>
+
+<p>If compiling for a supported RP2040 board other than the Pi Pico, add another item named 
+<kbd>PICO_BOARD</kbd> with the name of the board. The valid values are the names of the files in 
+<kbd>pico_sdk\src\boards\include\boards</kbd> (omitting the <kbd>.h</kbd> file extension).</p>
+
+<p>Under <kbd>Cmake: Preferred Generators</kbd>, click <kbd>Edit in settings.json</kbd> and add this section to the file:</p>
+
+<code>"cmake.preferredGenerators": [
+    "NMake Makefiles"
+],
+</code>
+
+<p>Save and close the settings file.</p>
+
+<h2>Test Build from VS Code</h2>
+
+<p>In VS Code, open the folder <kbd>pico_examples</kbd>.</p>
+
+<p>Select the correct compiler to use for builds:</p>
+<ul>
+<li>If prompted to select a compiler, select the one that has <kbd>arm-none-eabi</kbd> in its name.</li>
+<li>If not prompted and if <kbd>No kit selected</kbd> is shown at the bottom of the window, click on that and select <kbd>arm-none-eabi</kbd>.</li>
+<li>If the correct <kbd>arm-none-eabi</kbd> compiler is not listed, click on <kbd>Scan for kits</kbd> in the list and try again.</li>
+</ul>
+
+<p>Click the <kbd>Build</kbd> button at the bottom of the window to build the example programs again.</p>
+
+<p>Upload <kbd>blink.uf2</kbd> to the Pico again and its LED will blink.</p>
+
+<h1><a name="project"></a>Create a New Project</h1>
+
+<p>Here is how to create a new RP2040 C/C++ project. In this example the new project will be named <kbd>NewProject</kbd>.</p>
+
+<p>Create a sub-directory named <kbd>NewProject</kbd> in the Pico directory that was created above.</p>
+
+<p>Copy the file <kbd>pico_sdk_import.cmake</kbd> from the <kbd>pico_examples</kbd> directory to the <kbd>NewProject</kbd> directory.</p>
+
+<p>Open a Developer Command Prompt window.</p>
+
+<p>Type the command <kbd>code</kbd> to run Visual Studio Code. <em>Note:</em> VS Code must be run from a Developer Command Prompt window so that it gets the correct tool settings.</p>
+
+<p>In VS Code, open the <kbd>NewProject</kbd> folder.</p>
+
+<p>Create a new file named <kbd>CMakeLists.txt</kbd> and add these lines to the file. Use the name of your project in place of <kbd>NewProject</kbd>.</p>
+
+<code>cmake_minimum_required(VERSION 3.12)
+include(pico_sdk_import.cmake)
+project(NewProject)
+pico_sdk_init()
+add_executable(NewProject NewProject.c)
+target_link_libraries(NewProject pico_stdlib)
+pico_add_extra_outputs(NewProject)
+</code>
+
+<p>Initialize the build configuration: Select <kbd>Configure Tasks</kbd> from the <kbd>Terminal</kbd> menu and wait for it to complete. (This may happen automatically when <kbd>CMakeLists.txt</kbd> is saved.)</p>
+
+<p><em>Note:</em> If the Configure Tasks command fails or does nothing, it may be necessary to:</p>
+<ul>
+<li>Select the GCC "kit" from the list at the bottom of the VS Code window, or</li>
+<li>Exit VS Code, run it again by typing <kbd>code</kbd> in the Developer Command window, open 
+the <kbd>NewProjects</kbd> folder, and click "Yes" if prompted to configure the task.</li>
+</ul>
+
+<p>Create a C or C++ file named <kbd>NewProject.c</kbd> or <kbd>NewProject.cpp</kbd>. <em>Note:</em> The filename should match the one specified in <kbd>CMakeLists.txt</kbd>.</p>
+
+<p>Click the <kbd>Build</kbd> button at the bottom of the VS Code window and watch it compile.</p>
+
+<p>Upload <kbd>NewProject.uf2</kbd> to the Pico board.</p>
+
 </main>
 
 <footer><g-row><g-col style="width: 110px; vertical-align: middle">

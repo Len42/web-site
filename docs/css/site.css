@@ -211,7 +211,7 @@ kbd {
 code {
     display: block;
     white-space: pre;
-    margin: 0;
+    margin: 0 0 1em 0;
     padding: 0.3em 0.3em;
 	color: rgb(51,103,153);
     background-color: rgb(217,227,237);
