@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>VCO Calibration - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>VCO Calibration</h1>
+<p>How to calibrate the VCO-2131 module</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="#equipment">Equipment</a></li>
+<li><a href="#params">Parameters</a></li>
+<li><a href="#prep">Preparation</a></li>
+<li><a href="#trimming">Trimming</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<p>This is the procedure for adjusting the <a href="https://github.com/Len42/Synth/tree/main/modules/VCO-2131#readme">VCO-2131</a> module to get accurate 1-volt-per-octave tracking and a reasonable tuning range. It's a bit fiddly and takes a few minutes but I was able to get excellent pitch tracking over 9 octaves.</p>
+
+<p>In addition to the tuning controls on the front panel, there are three adjustable trimmers on the back of the module: Pitch, scaling, and high-frequency trim. The scaling and high-frequency trim controls adjust the module's volt-per-octave response so that all notes up & down the keyboard are in tune. The pitch trimmer adjusts the overall tuning so that the front panel knobs cover a reasonable range.</p>
+
+<h1><a name="equipment"></a>Required Equipment</h1>
+<p><strong>Either:</strong></p>
+<ul>
+<li>Precision voltage source, adjustable from 0V to +10V. An accurate 1V/octave keyboard or MIDI-CV converter can be used.</li>
+<li>Precision frequency counter or music tuner.</li>
+</ul>
+<p><strong>Or:</strong></p>
+<ul>
+<li>Stable (but non-precision) voltage source, <i>e.g.</i> from a voltage regulator. +5V and +10V (approximately) are required.</li>
+<li>Precision voltmeter.</li>
+<li>Precision frequency counter. (Not a music tuner – the frequencies will not necessarily correspond to musical note pitches.)</li>
+</ul>
+
+<h1><a name="params"></a>Calibration Parameters</h1>
+<p>Three appropriate pitch control voltages and corresponding frequencies must be selected:</p>
+<ul>
+<li>Low note with 0V CV input, <i>e.g.</i> C0 (16.35 Hz) or A0 (27.5 Hz).</li>
+<li>Middle note with +5V CV input, <i>e.g.</i> C5 or A5. If the +5V is not precise (<i>e.g.</i> it’s from a voltage regulator) calculate the frequency corresponding to the actual measured voltage.</li>
+<li>High note with +10 CV input, <i>e.g.</i> C10 or A10. If the +10V is not precise, calculate the frequency corresponding to the actual measured voltage.</li>
+</ul>
+
+<p>Other appropriate voltages may be used instead of 5V and 10V.</p>
+
+<p><a href="https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies">Here is a page listing the frequencies of musical notes.</a></p>
+
+<h1><a name="prep"></a>Preparation</h1>
+<ol>
+<li>Connect a waveform output (sawtooth, triangle, or pulse) to the frequency counter or tuner.</li>
+<li>Do not connect the voltage source to the CV input yet.</li>
+<li>Leave the other inputs & outputs unconnected.</li>
+<li>Set the Range switch to the low (bass) setting, the Coarse Tuning knob fully counter-clockwise, and Fine Tuning to the centre.</li>
+<li>Turn the HF TRIM trimmer on the module's circuit board fully counter-clockwise.</li>
+</ol>
+
+<h1><a name="trimming"></a>Trimming the VCO</h1>
+<p>Adjust the trimmer potentiometers on the module's circuit board as follows:</p>
+<ol>
+<li><em>Adjust low note:</em> With the controls set as above and no voltage applied to the CV input, adjust the PITCH trimmer (RV11) so that the output frequency equals the chosen low note frequency.</li>
+<li><em>Adjust scaling:</em> Set the voltage source to +5 V and connect it to the 1V/Octave CV input. Adjust the SCALE trimmer (RV9) so that the output frequency equals the chosen middle note frequency.</li>
+<li><em>Repeat</em> the above steps until both the low and middle frequencies are correct.</li>
+<li><em>Adjust high frequency compensation:</em> Set the voltage source to +10 V and adjust the HF TRIM trimmer (RV10) so that the output frequency equals the chosen high note frequency.</li>
+<li><em>Repeat</em> the above steps until all three frequencies are correct.</li>
+</ol>
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col>© 2022-2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</g-col></g-row></footer>
+
+</body>
+</html>
