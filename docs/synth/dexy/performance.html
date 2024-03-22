@@ -10,35 +10,77 @@
 <header>
 <hgroup>
 <h1>Dexy Firmware Performance</h1>
-<p>RP2040 performance considerations</p>
+<p>RP2040 firmware performance considerations</p>
 </hgroup>
 <nav>
 <ul>
-<li><a href="#intro">Intro</a></li>
-<li><a href="#main">Main</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#intro">Overview</a></li>
+<li><a href="#cores">Cores</a></li>
+<li><a href="#arithmetic">Arithmetic</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#flash">Flash</a></li>
 <li><a href="/">Home</a></li>
 </ul>
 </nav>
 </header>
 
 <main>
-    
-<h1><a name="intro"></a>Intro</h1>
-<p>Introduction.</p>
 
-<h1><a name="main"></a>Main</h1>
-<p>Main section.</p>
+<h1><a name="intro"></a>Overview</h1>
 
-<h1><a name="conclusion"></a>Conclusion</h1>
-<p>Final section.</p>
+<p>The <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a> in the <a href="index.html">Dexy module</a> has to perform several tasks, some of which have real-time performance requirements. The RP2040 is able to perform these tasks but there's not a lot of slack, so I had to make sure the code was as efficient as possible. In addition to commonly-used techniques for writing performant code, I used some specific optimizations for this project.</p>
+
+<p>The time-critical tasks are:</p>
+<dl>
+<div><dt>Audio output</dt><dd>Audio samples <em>must</em> be output at a fixed rate (specified to be 49152 Hz). Any variation in the output rate will sound bad.</dd></div>
+<div><dt>Analog CV inputs</dt><dd>Two analog control voltages must be sampled by the ADC at audio (or "near-audio") rate. The exact sample rate is less critical for the input than the output &mdash; fast enough is fast enough.</dd></div>
+<div><dt>Gate input</dt><dd>This is a digital input for note-start and note-stop signals. These signals should be handled fairly promptly &mdash; within a millisecond or so is OK.</dd></div>
+</dl>
+
+<p>There are also some lower-priority tasks, <i>e.g.</i> updating the OLED display, which are not discussed here because it doesn't matter much if they don't always run on time.</p>
+
+<h1><a name="cores"></a>CPU Cores and Interrupts</h1>
+<p>The CPU in the RP2040 is a dual-core <a href="https://developer.arm.com/Processors/Cortex-M0-Plus">ARM Cortex M0+</a>. In this application, one core is dedicated to generating and outputing the audio samples. Everything else, including reading the ADC inputs and various lower-priority tasks, runs on the other CPU core.</p>
+
+<p>Timer interrupts are used to write output samples to the DAC and read input samples from the ADC at regular intervals. Gate signals are handled by a GPIO interrupt. Using interrupts for these tasks ensures that they run on time with the minimum possible delay.</p>
+
+<h1><a name="arithmetic"></a>Fixed-Point Arithmetic</h1>
+<p>The Cortex M0+ CPU does not have hardware to do floating-point arithmetic. Performing floating-point operations in software is much slower than doing it in hardware &mdash; far too slow for this application. But digital audio synthesis has to do a lot of mathematical calculations involving real numbers (<i>e.g.</i> calculating sine waves), which are usually represented in computer software as floating-point numbers.</p>
+
+<p>One way to do artithmetic quickly on an integer CPU is to use a fixed-point representation for numbers. Fixed-point arithmetic is just integer arithmetic except you assume that the decimal point (or rather, the binary point) is at a specific position in the middle of the number. Care must be taken when multiplying and dividing to scale the numbers by a power of 2 (a simple bit-shift operation) to make sure they line up.</p>
+
+<h1><a name="tables"></a>Lookup Tables</h1>
+<p></p>
+
+<p>TODO</p>
+
+Another way to do arithmetic quickly is to avoid doing it at all.
+
+The Dexy firmware uses pre-computed <a href="https://en.wikipedia.org/wiki/Wavetable_synthesis">wavetables</a> to do complex calculations such as sine and exponential functions, for sine wave synthesis and envelope generation.
+
+Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 elements) with simple linear interpolation. This gives pretty accurate results very quickly.
+
+
+
+---
+Another way to do arithmetic quickly is to avoid doing it at all. I used pre-computed lookup tables to do complex calculations such as sine and exponential functions. This gives fairly accurate results very quickly.
+
+Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 elements) with simple linear interpolation to get more accurate results.
+
+https://en.wikipedia.org/wiki/Wavetable_synthesis
+
+
+<h1><a name="flash"></a>Flash Memory Problems</h1>
+
+<p>TODO</p>
+
 </main>
 
 <footer><g-row><g-col style="width: 110px; vertical-align: middle">
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
 <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
 </g-col>
-<g-col>© 2024 Len Popp<br>
+<g-col>© 2023-2024 Len Popp<br>
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </g-col></g-row></footer>
 
