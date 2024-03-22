@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Hardware - Dexy - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>Dexy Hardware</h1>
+<p>Hardware design of the <a href="index.html">Dexy</a> module</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#pcbs">PCBs</a></li>
+<li><a href="#schematic">Schematic</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<p>Dexy is a 10HP Eurorack module that does digital FM synthesis.</p>
+<a href="board2.jpg"><img src="board2.jpg" class="side" alt="Dexy PCB"></a>
+
+<h1><a name="features"></a>Features</h1>
+<ul>
+<li>10 HP <a href="https://en.wikipedia.org/wiki/Eurorack">Eurorack</a> module</li>
+<li>Based on an <a href="https://www.adafruit.com/product/5302">Adafruit KB2040</a> board with an <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a> (similar to <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a>)</li>
+<li>Inputs: Gate, pitch (1V/octave), pitch modulation, timbre modulation</li>
+<li>Gate and 1V/oct inputs can be normalled from the Eurorack bus (jumper-selectable) - more info <a href="../eurorack-bus-cv-gate.html">here</a></li>
+<li>Attenutators on the modulation inputs</li>
+<li>Timbre control knob</li>
+<li>Rotary encoder and OLED display for patch selection and note animations</li>
+<li>USB connection to download patches and firmware</li>
+</ul>
+
+<h1><a name="notes"></a>Notes</h1>
+<p>This module requires a 16-pin Eurorack power cable that supplies +5 V power in addition to +12 V and -12 V.</p>
+
+<p></p>The <a href="https://www.adafruit.com/product/5302">KB2040</a> microcontroller module is similar to a <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> but it's smaller. The firmware will run on any Pico-compatible board with minor changes. (For example, my prototype used an <a href="https://www.adafruit.com/product/4884">Adafruit Feather RP2040</a> but it turned out to be too big.)</p>
+
+<a href="board.jpg"><img src="board.jpg" class="side" alt="Dexy PCB"></a>
+
+<p>The microcontroller board is powered by either the USB connection or the Eurorack +5 V supply, whichever is turned on. If both power supplies are on, a diode prevents them from fighting each other.</p>
+
+<p>For the USB connection, I have the USB cable running through a hole in the front panel
+and a right-angle adapter to the KB2040. It looks a bit janky and it's hard to plug
+and unplug, but I was worried about running USB data lines from one PCB to the other
+over a header connector. The data rate is only 12 MB/s (USB 1.1) so I think it would
+have been OK to run the data lines to a USB-B connector on the controls PCB.</p>
+
+<p>An OLED display and a rotary encoder are used for a user interface to the
+microcontroller, mostly used for patch selection.</p>
+
+<p>Analog CV inputs for pitch and timbre modulation are read by the RP2040's built-in
+12-bit ADC. This ADC isn't great
+(<a href="https://lenp.net/dev/rp2040-adc-accuracy.html">see here</a> for more info)
+and a 14-bit ADC would give better results for the the 1V/octave pitch CV input.
+I couldn't find a good, cheap, usable 14-bit ADC chip, so I'm sticking with the built-in
+ADC.</p>
+
+<p>The two pitch CV inputs - 1V/oct and modulation - are added together by an op-amp and
+read by a single ADC channel, instead of having separate ADC inputs for the two inputs.
+Same for the timbre control and timbre mod CV. These CV inputs need an op-amp stage to
+scale them down to the RP2040's voltage range (0 to +3.3 V), so it's easy to add them
+in hardware and use fewer ADC channels.</p>
+
+<p>The audio output is generated digitally by the microcontroller and converted to an
+analog signal by a <a href="https://www.microchip.com/en-us/product/MCP4821">MCP4821</a>
+DAC chip, which is followed by a reconstruction filter made of two Sallen-Key filter
+stages.</p>
+
+<p>The Dexy module is open source hardware. The hardware design is
+published under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.
+Firmware and software are published under the <a href="https://github.com/Len42/Dexy/blob/main/firmware/LICENSE">MIT license</a>.</p>
+
+<p>Please note that I am a hobbyist, not a trained electronics engineer. No guarantees!</p>
+
+<h1><a name="pcbs"></a>PCBs</h1>
+<p>PCB layouts are provided in <a href="https://www.kicad.org/">KiCad</a> and <a href="https://en.wikipedia.org/wiki/Gerber_format">gerber</a> formats, <a href="https://github.com/Len42/Dexy/tree/main/hardware">on GitHub</a>. A PCB layout for a drilled front panel (with no labels) is also included.</p>
+
+<p>The PCBs that I designed for this module can be ordered from <a href="https://oshpark.com/profiles/Len">OSH Park</a>:</p>
+<ul>
+<li><a href="https://oshpark.com/shared_projects/SqPinUsc">Main board</a></li>
+<li><a href="https://oshpark.com/shared_projects/VcDtCyfD">Controls board</a> &mdash; <em>Note:</em> This version is missing the debouncing capacitors on the rotary
+encoder. The latest KiCad and Gerber files are correct.</li>
+<li><a href="https://oshpark.com/shared_projects/q5TKd42b">Front panel</a></li>
+</ul>
+
+<h1><a name="schematic"></a>Schematic</h1>
+<p>PDF version is <a href="schematic.pdf">here</a>. KiCad files are <a href="https://github.com/Len42/Dexy/tree/main/hardware">on GitHub</a>.</p>
+
+<g-row>
+<g-col><a href="schematic1.png"><img src="schematic1.png" alt="schematic page 1"></a></g-col>
+<g-col><a href="schematic2.png"><img src="schematic2.png" alt="schematic page 2"></a></g-col>
+</g-row>
+
+<h1><a name="tools"></a>Software Used</h1>
+<p><a href="https://www.kicad.org/">KiCad</a> 7.0.2</p>
+
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col>© 2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</g-col></g-row></footer>
+
+</body>
+</html>
