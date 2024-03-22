@@ -1,45 +1,108 @@
 <!DOCTYPE html>
 <html lang="en-CA">
 <head>
-<title>Demo Page - Len’s Stuff</title>
+<title>Firmware - Dexy - Len’s Stuff</title>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
 </head>
 <body>
 <header>
 <hgroup>
-<h1>Demo Page</h1>
-<p>A demo of a styled HTML page</p>
+<h1>Dexy Firmware</h1>
+<p>Firmware for the <a href="index.html">Dexy</a> module</p>
 </hgroup>
 <nav>
 <ul>
-<li><a href="#intro">Intro</a></li>
-<li><a href="#main">Main</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#building">Building</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#synthesis">Synthesis</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#tools">Tools</a></li>
 <li><a href="/">Home</a></li>
 </ul>
 </nav>
 </header>
 
 <main>
-<h1><a name="intro"></a>Intro</h1>
-<p>Introduction.</p>
+<a href="firmware.png"><img src="firmware.png" class="side" alt="Dexy PCB"></a>
+<p>The <a href="index.html">Dexy</a> module is based on an <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a>. The firmware is open source and is published under the <a href="https://github.com/Len42/Dexy/blob/main/firmware/LICENSE">MIT license</a>. GitHub repository is <a href="https://github.com/Len42/Dexy">here</a>.</p>
 
-<h1><a name="main"></a>Main</h1>
-<p>Main section.</p>
+<h1><a name="building"></a>Building the Firmware</h1>
+<p>Compiling the Dexy firmware requires the following tools:</p>
+<ul>
+<li><a href="https://cmake.org/">CMake</a></li>
+<li><a href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads">Arm GNU Toolchain</a> (GCC compiler for Arm)</li>
+<li><a href="https://github.com/raspberrypi/pico-sdk"></a>Raspberry Pi Pico C/C++ SDK</li>
+</ul>
 
-<h1><a name="conclusion"></a>Conclusion</h1>
-<p>Final section.</p>
+<p><a href="https://lenp.net/dev/rp2040-dev-setup.html">Here are step-by-step instructions</a> for setting up a development environment on Windows using Visual Studio Code.</p>
+
+<p>Instructions for installing the toolchain on Linux and Mac OS can be found in <a href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf">Getting Started with Raspberry Pi Pico</a>.</p>
+
+<h1><a name="overview"></a>Firmware Overview</h1>
+<p>The Dexy firmware is responsible for:</p>
+<ul>
+<li>Digital FM synthesis (its main job)</li>
+<li>Sending audio output to the DAC chip via SPI</li>
+<li>Handling the gate and CV inputs</li>
+<li>Implementing a user interface using the rotary encoder and OLED display</li>
+<li>Communicating with a computer over a USB-serial connection</li>
+</ul>
+
+<p>The firmware is written in C++ using the <a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico C/C++ SDK</a>. The Dexy module uses an <a href="https://www.adafruit.com/product/5302">Adafruit KB2040</a> board but the firmware can run on a <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> or other compatible board; my prototype used an <a href="https://www.adafruit.com/product/4884">Adafruit Feather RP2040</a>. To use a different RP2040 board, the I/O pin definitions in Gpio.h must be changed (and of course the PCB layout must be modified).</p>
+
+<p>The RP2040 microcontroller has two CPU cores, and the Dexy firmware uses both of them.</p>
+
+<p>Core 0 reads the CV inputs (at the sample rate, called from an interrupt) and also runs a task scheduler that executes various lower-priority tasks such as patch selection and USB communication.</p>
+
+<p>Core 1 runs the FM synthesis algorithm to generate audio output samples and sends the output to the DAC chip. Audio output is generated at a sample rate of 49152 Hz, clocked by a PWM timer interrupt.</p>
+
+<p>The firmware stores 32 preset patches. The rotary encoder is used to select which patch to play. There is no patch editing on the module - patches are editing using the <a href="software.html">DexyPatch software</a> and downloaded to the module. Downloaded patches are stored in flash memory so they are retained when the module is turned off. <em>Note:</em> Updating the firmware will replace the patches with a default set.</p>
+
+<h1><a name="synthesis"></a>FM Synthesis</h1>
+<p>The FM synthesis is loosely based on the Yamaha DX7 voice architecture, but only a
+single voice is implemented. There are 6 operators, each consisting of a sine wave
+oscillator and an envelope generator. The operators are combined according to one of
+32 “algorithms” so that some operators are audio outputs and some operators modulate
+another operator's frequency.</p>
+
+<p>Sine waves and envelopes are generated using wavetables.</p>
+
+<h1><a name="notes"></a>Notes</h1>
+<p>It was challenging to get the FM synthesis code to run fast enough to keep up with the 49 kHz sample rate. <a href="performance.html">Here are some notes about performance.</a></p>
+
+<p>Another challenge was getting accurate results from the 12-bit ADC in the RP2040 so there is good (well, good enough) volt-per-octave pitch tracking across 10 octaves.
+<a href="https://lenp.net/dev/rp2040-adc-accuracy.html">More info here.</a></p>
+
+<p>The Dexy firmware does not support pitch tracking (keyboard tracking) for operator amplitude and envelope rate, as the DX7 does. This is a useful feature that may be added in the future.</p>
+
+<h1><a name="tools"></a>Tools &amp; Libraries Used</h1>
+<ul>
+<li><a href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads">GCC for Arm</a> 13.2.1</li>
+<li><a href="https://cmake.org/">CMake</a> 3.22.3</li>
+<li><a href="https://www.python.org/">Python</a> 3.10.2</li>
+<li><a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico C/C++ SDK</a> 1.5.1</li>
+<li><a href="https://github.com/eyalz800/zpp_bits">zpp_bits</a> 4.4.15</li>
+<li><a href="https://github.com/daschr/pico-ssd1306">pico-ssd1306</a></li>
+<li><a href="https://www.dcmembers.com/jibsen/download/61/">Dina font</a> 2.92</li>
+</ul>
+
 </main>
 
-<footer><g-row><g-col style="width: 110px; vertical-align: middle">
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
-</g-col>
-<g-col>© 2024 Len Popp<br>
-This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-</g-col></g-row></footer>
+<footer>
+    <g-row>
+        <g-col style="width: 155px; vertical-align: middle">
+            <img src="https://i0.wp.com/www.oshwa.org/wp-content/uploads/2014/03/oshw-logo-100-px.png" width=71 height=75 />
+            <img src="../../assets/osi-logo.png" width=58 height=75 />
+        </g-col>
+        <g-col style="vertical-align: middle">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a><br>
+            © 2023-2024 Len Popp. This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+        </g-col>
+    </g-row>
+</footer>
 
 </body>
 </html>
