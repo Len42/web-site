@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>DexyPatch - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>DexyPatch Software</h1>
+<p>Patch editor for the <a href="index.html">Dexy</a> module</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#screenshot">Screenshot</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<img src="software.jpg" class="side" alt="cropped screenshot">
+<p>DexyPatch is a Windows application for editing patches for the <a href="index.html">Dexy</a> FM voice module. It is open source software and is published under the <a href="https://github.com/Len42/Dexy/blob/main/firmware/LICENSE">MIT license</a>. GitHub repository is <a href="https://github.com/Len42/Dexy">here</a>.</p>
+
+<h1><a name="features"></a>Features</h1>
+<ul>
+<li>Patch editing for the Dexy module</li>
+<li>Save and load patchbank files</li>
+<li>USB interface to the Dexy module:</li>
+    <ul>
+    <li>Upload and download patchbanks</li>
+    <li>Download firmware to the module</li>
+    <li>Display status and debugging messages from the module</li>
+    </ul>
+<li>Live patch editing &mdash; When editing a patchbank that was uploaded from the Dexy module, changes to the currently-playing patch are heard immedately</li>
+</ul>
+
+<h1><a name="notes"></a>Notes</h1>
+<p>DexyPatch is written using C#, .NET, and the
+<a href="https://github.com/avaloniaui/avalonia">Avalonia UI</a> app framework. Those components are cross-platform, but the project was built on Windows with <a href="https://visualstudio.microsoft.com/downloads/">Microsoft Visual Studio</a> and it may contain some Windows-specific code. Some work would be needed to get it to build and run on Mac OS or Linux.</p>
+
+<h1><a name="screenshot"></a>Screenshot</h1>
+<a href="screenshot.jpg"><img src="screenshot.jpg" alt="Dexypatch screenshot"></a>
+
+<h1><a name="tools"></a>Tools &amp; Libraries Used</h1>
+<ul>
+<li><a href="https://github.com/avaloniaui/avalonia">Avalonia UI</a> 0.10.19</li>
+<li><a href="https://visualstudio.microsoft.com/downloads/">Microsoft Visual Studio 2022</a> Community Edition</li>
+<li><a href="https://www.python.org/">Python</a> 3.10.2</li>
+<li><a href="https://github.com/Len42/MakeVersionInfoP">MakeVersionInfoP</a></li>
+<li><a href="https://www.microsoft.com/en-ca/software-download/windows10">Windows 10</a></li>
+</ul>
+
+</main>
+
+<footer>
+    <g-row>
+        <g-col style="width: 75px; vertical-align: middle">
+            <img src="../../assets/osi-logo.png" width=58 height=75 />
+        </g-col>
+        <g-col style="vertical-align: middle">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a><br>
+            © 2023-2024 Len Popp. This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+        </g-col>
+    </g-row>
+</footer>
+
+</body>
+</html>
