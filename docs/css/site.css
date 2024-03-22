@@ -1,13 +1,14 @@
 /* Stylesheet for Len's web site
-   Expectations: <body> directly contains one each of <header>, <main>, <footer>
-   in that order, and nothing else. (Additional <header> and <footer> elements
-   may appear nested, e.g. <blockquote><footer>.)
+
+   HTML Requirements:
+   <body> directly contains one each of <header>, <main>, <footer> in that order
+   and nothing else. (Additional <header> and <footer> elements may appear
+   inside other things, e.g. <blockquote><footer>.)
+   <header> contains <hgroup> (or <h1>) and <nav>, and <nav> contains a linkline
+   which is a <ul>.
 */
 
-/* TODO:
-   - table
-   - forms
-*/
+/* TODO: forms */
 
 @viewport {
     zoom: 1.0;
@@ -17,7 +18,7 @@
 * {
     box-sizing: border-box
 }
-  
+
 html {
     text-size-adjust: 100%;
     color: black;
@@ -65,7 +66,7 @@ main {
     padding-right: 2rem;
     padding-top: 0px;
 }
-  
+
 body > xfooter {
     min-width: 200px;
     max-width: 800px;
@@ -83,7 +84,7 @@ body > xfooter {
     font-size: 0.85em;
     font-weight: bold;
 }
-  
+
 body > footer {
     clear: both;
     min-width: 200px;
@@ -166,12 +167,12 @@ h4 {
     font-size: 1em;
     color: #6a737d;
 }
-  
+
 h5 {
     font-size: 0.875em;
     color: #6a737d;
 }
-  
+
 h6 {
     font-size: 0.85em;
 }
@@ -254,7 +255,7 @@ kbd > kbd {
     border-radius: 3px;
     border: solid rgb(51,103,153) 1px;
 }
-  
+
 /* TODO: some of this might be redundant */
 p,
 blockquote,
@@ -277,7 +278,7 @@ blockquote {
 	color: rgb(51,103,153);
     background: url("quote.png") top left no-repeat;
 }
-    
+
 blockquote > :first-child {
     margin-top: 0;
 }
@@ -397,7 +398,7 @@ table th {
     text-align: start;
     font-weight: 600;
   }
-  
+
 table th,
 table td {
     text-align: start;
