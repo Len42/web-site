@@ -85,12 +85,9 @@ body > xfooter {
 }
   
 body > footer {
+    clear: both;
     min-width: 200px;
     max-width: 800px;
-    xposition: absolute;
-    xright: 0;
-    xbottom: 0;
-    xleft: 0;
     margin: 2rem auto;
     padding-top: 1rem;
     padding-left: 2rem;
@@ -236,7 +233,7 @@ code {
     margin: 0 0 1em 0;
     padding: 0.3em 0.3em;
 	color: rgb(51,103,153);
-    background-color: rgb(217,227,237);
+    background-color: rgb(226,233,241);
     border-radius: 3px;
 }
 
@@ -385,6 +382,36 @@ dd > p {
     margin-bottom: 0.5em;
     margin-left: 0;
     text-indent: 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: auto;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+table th {
+    text-align: start;
+    font-weight: 600;
+  }
+  
+table th,
+table td {
+    text-align: start;
+    padding: 0.4em 0.7em;
+    border: 1px solid rgb(168,200,220);
+}
+
+table tr {
+    background-color: white;
+    border-top: 1px solid rgb(168,200,220);
+}
+
+table tr:nth-child(2n) {
+    background-color: rgb(226,233,241);
 }
 
 body > header h1 {
