@@ -241,6 +241,7 @@ code {
 p code { /* TODO: add other container elements as required */
     display: inline-block;
     padding: 0 0.3em;
+    margin: 0;
 }
 
 kbd {
