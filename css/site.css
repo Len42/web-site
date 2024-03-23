@@ -33,7 +33,7 @@ body {
     /* Page width is set in children so the header can be full width. */
     margin: 0 auto;
     position: relative;
-    padding-bottom: 100px; /* This is room for the footer */
+    xpadding-bottom: 100px; /* This is room for the footer */
 }
 
 body:last-child {
@@ -65,24 +65,6 @@ main {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 0px;
-}
-
-body > xfooter {
-    min-width: 200px;
-    max-width: 800px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0 auto;
-    padding-top: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border: solid rgb(168,200,220);
-    border-width: 0.2rem 0 0 0;
-	color: rgb(51,103,153);
-    font-size: 0.85em;
-    font-weight: bold;
 }
 
 body > footer {
