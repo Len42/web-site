@@ -50,25 +50,11 @@
 <p>One way to do artithmetic quickly on an integer CPU is to use a fixed-point representation for numbers. Fixed-point arithmetic is just integer arithmetic except you assume that the decimal point (or rather, the binary point) is at a specific position in the middle of the number. Care must be taken when multiplying and dividing to scale the numbers by a power of 2 (a simple bit-shift operation) to make sure they line up.</p>
 
 <h1><a name="tables"></a>Lookup Tables</h1>
-<p></p>
+<p>Another way to do arithmetic quickly is to avoid doing it at all.</p>
 
-<p>TODO</p>
+<p>The Dexy firmware uses pre-computed <a href="https://en.wikipedia.org/wiki/Wavetable_synthesis">wavetables</a> to do complex calculations such as sine and exponential functions, for sine wave synthesis and envelope generation.</p>
 
-Another way to do arithmetic quickly is to avoid doing it at all.
-
-The Dexy firmware uses pre-computed <a href="https://en.wikipedia.org/wiki/Wavetable_synthesis">wavetables</a> to do complex calculations such as sine and exponential functions, for sine wave synthesis and envelope generation.
-
-Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 elements) with simple linear interpolation. This gives pretty accurate results very quickly.
-
-
-
----
-Another way to do arithmetic quickly is to avoid doing it at all. I used pre-computed lookup tables to do complex calculations such as sine and exponential functions. This gives fairly accurate results very quickly.
-
-Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 elements) with simple linear interpolation to get more accurate results.
-
-https://en.wikipedia.org/wiki/Wavetable_synthesis
-
+<p>Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 entries) with simple linear interpolation. This gives pretty accurate results very quickly.</p>
 
 <h1><a name="flash"></a>Flash Memory Problems</h1>
 
