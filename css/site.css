@@ -33,7 +33,6 @@ body {
     /* Page width is set in children so the header can be full width. */
     margin: 0 auto;
     position: relative;
-    xpadding-bottom: 100px; /* This is room for the footer */
 }
 
 body:last-child {
