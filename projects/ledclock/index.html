@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>LED Clock - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<h1>LED Clock</h1>
+<p>A retro LED clock made with recycled parts</p>
+</hgroup>
+<nav>
+<ul>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<p>I made this LED clock as a Christmas present for someone who has a basement full of old tech.</p>
+<a href="ledclock.jpg"><img src="ledclock.jpg" alt="LED clock"></a>
+
+<p><a href="http://www.flickr.com/photos/lenp17/sets/72157622892723070/">Click here for more pics.</a></p>
+
+<p>The LED display is salvaged from an old clock-radio. The enclosure (which isn't fully enclosed)
+is made from old cassette tape cases and decorated with album art (about as old as the LED)
+printed on transparent decals.</p>
+    
+<p>The electronics are loosely based on <a href="https://www.adafruit.com/product/194">Adafruit's Ice Tube clock</a>. I used a <a href="https://www.adafruit.com/product/72">BoArduino</a> module which has a microcontroller and a power supply on a small board. I replaced the BoArduino's 16 MHz oscillator with a watch crystal and set the microcontrollerto run on its internal clock. I found an old-school driver chip for the non-multiplexed LED display (<a href="https://www.microchip.com/en-us/product/mm5451">Micrel/Microchip MM5451</a>). There's a photocell for automatic brightness control.</p>
+
+<p>The firmware is also partly from the Ice Tube, partly written by me.
+<a href="http://forums.adafruit.com/viewtopic.php?f=41&t=12948">Mike's Arduino version of the Ice Tube firmware</a>
+also came in handy for prototyping.
+Since the display has only four digits, this clock doesn't have fancy text menus like the Ice Tube.</p>
+
+    TODO: GitHub
+    <p><a href="/download/LEDClock.2010.01.03.zip">Download firmware</a></p>
+    
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col>© 2010, 2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</g-col></g-row></footer>
+
+</body>
+</html>
