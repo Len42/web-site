@@ -28,7 +28,7 @@
 </p>
 
 <h1><a name="background"></a>Background</h1>
-<p>Here’s the situation: I’m making a digital voice module for <a href="/synth/">a modular synthesizer</a>, using an <a href="https://learn.adafruit.com/adafruit-feather-rp2040-pico">Adafruit Feather RP2040 board</a> (similar to a <a href="https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico</a>) which has an <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a>. I need the microcontroller to read an analog control voltage that represents the pitch of notes to be played. This voltage reading has to be quite accurate because people's ears are sensitive to small pitch inaccuracies.</p>
+<p>Here’s the situation: I’m making a digital voice module for <a href="/synth/">a modular synthesizer</a>, using an <a href="https://learn.adafruit.com/adafruit-feather-rp2040-pico">Adafruit Feather RP2040 board</a> (similar to a <a href="https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico</a>) which has an <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a>. I need the microcontroller to read an analog control voltage that represents the pitch of notes to be played. This voltage reading has to be quite accurate because people’s ears are sensitive to small pitch inaccuracies.</p>
 
 <p>The RP2040 has a built-in ADC, which at first glance looks like it should be able to do the job:</p>
 <ul>

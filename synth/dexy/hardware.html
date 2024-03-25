@@ -45,14 +45,14 @@ Hardware and software are open source. GitHub repository is <a href="https://git
 <h1><a name="notes"></a>Notes</h1>
 <p>This module requires a 16-pin Eurorack power cable that supplies +5 V power in addition to +12 V and -12 V.</p>
 
-<p></p>The <a href="https://www.adafruit.com/product/5302">KB2040</a> microcontroller module is similar to a <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> but it's smaller. The firmware will run on any Pico-compatible board with minor changes. (For example, my prototype used an <a href="https://www.adafruit.com/product/4884">Adafruit Feather RP2040</a> but it turned out to be too big.) Of course, the PCB layout must be changed if a different microcontroller module is used.</p>
+<p></p>The <a href="https://www.adafruit.com/product/5302">KB2040</a> microcontroller module is similar to a <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> but it’s smaller. The firmware will run on any Pico-compatible board with minor changes. (For example, my prototype used an <a href="https://www.adafruit.com/product/4884">Adafruit Feather RP2040</a> but it turned out to be too big.) Of course, the PCB layout must be changed if a different microcontroller module is used.</p>
 
 <a href="board.jpg"><img src="board.jpg" class="side" alt="Dexy PCB"></a>
 
 <p>The microcontroller board is powered by either the USB connection or the Eurorack +5 V supply, whichever is turned on. If both power supplies are on, a diode prevents them from fighting each other.</p>
 
 <p>For the USB connection, I have the USB cable running through a hole in the front panel
-and a right-angle adapter to the KB2040. It looks a bit janky and it's hard to plug
+and a right-angle adapter to the KB2040. It looks a bit janky and it’s hard to plug
 and unplug, but I was worried about running USB data lines from one PCB to the other
 over a header connector. The data rate is only 12 MB/s (USB 1.1) so I think it would
 have been OK to run the data lines to a USB-B connector on the controls PCB.</p>
@@ -60,17 +60,17 @@ have been OK to run the data lines to a USB-B connector on the controls PCB.</p>
 <p>An OLED display and a rotary encoder are used for a user interface to the
 microcontroller, mostly used for patch selection.</p>
 
-<p>Analog CV inputs for pitch and timbre modulation are read by the RP2040's built-in
-12-bit ADC. This ADC isn't great
+<p>Analog CV inputs for pitch and timbre modulation are read by the RP2040’s built-in
+12-bit ADC. This ADC isn’t great
 (<a href="https://lenp.net/dev/rp2040-adc-accuracy.html">see here</a> for more info)
 and a 14-bit ADC would give better results for the the 1V/octave pitch CV input.
-I couldn't find a good, cheap, usable 14-bit ADC chip, so I'm sticking with the built-in
+I couldn’t find a good, cheap, usable 14-bit ADC chip, so I’m sticking with the built-in
 ADC.</p>
 
 <p>The two pitch CV inputs - 1V/oct and modulation - are added together by an op-amp and
 read by a single ADC channel, instead of having separate ADC inputs for the two inputs.
 Same for the timbre control and timbre mod CV. These CV inputs need an op-amp stage to
-scale them down to the RP2040's voltage range (0 to +3.3 V), so it's easy to add them
+scale them down to the RP2040’s voltage range (0 to +3.3 V), so it’s easy to add them
 in hardware and use fewer ADC channels.</p>
 
 <p>The audio output is generated digitally by the microcontroller and converted to an
