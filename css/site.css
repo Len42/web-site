@@ -363,7 +363,7 @@ dl.inline dd::before {
 
 dl.inline dd::after {
     content: "\a"; /* line break */
-    white-space-collapse: preserve;
+    white-space: pre;
 }
 
 dl.inline dd:last-of-type::after {
