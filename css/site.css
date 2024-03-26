@@ -175,29 +175,26 @@ img {
     vertical-align: middle
 }
 
-/* <img class="side"> floats the image to the right of the page */
-img.side {
-    float: right;
-    margin: 0.2rem 0 0.2rem 0.5rem;
-    max-width: 50%;
-}
-
 /* For an image with a caption, use <figure><img><figcaption> */
 figure {
     margin: 0.2rem 0.2rem 0.2rem 0;
     vertical-align: middle
 }
 
-/* class="side" also works with <figure> */
-figure.side {
+figcaption {
+    font-style: italic;
+	color: rgb(51,103,153);
+}
+
+aside {
     float: right;
     margin: 0.2rem 0 0.2rem 0.5rem;
     max-width: 50%;
 }
 
-figcaption {
-    font-style: italic;
-	color: rgb(51,103,153);
+aside img,
+aside figure {
+    margin: 0
 }
 
 code,
@@ -337,7 +334,7 @@ dd > p {
     text-indent: 0;
 }
 
-/* <dl class="inside"> puts <dt> and <dd> on one line */
+/* <dl class="inline"> puts <dt> and <dd> on one line */
 dl.inline {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
