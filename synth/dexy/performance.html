@@ -31,10 +31,10 @@
 <p>The <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a> in the <a href="index.html">Dexy module</a> has to perform several tasks, some of which have real-time performance requirements. The RP2040 is able to perform these tasks but there’s not a lot of slack, so I had to make sure the code was as efficient as possible. In addition to commonly-used techniques for writing performant code, I used some specific optimizations for this project.</p>
 
 <p>The time-critical tasks are:</p>
-<dl>
-<div><dt>Audio output</dt><dd>Audio samples <em>must</em> be output at a fixed rate (specified to be 49152 Hz). Any variation in the output rate will sound bad.</dd></div>
-<div><dt>Analog CV inputs</dt><dd>Two analog control voltages must be sampled by the ADC at audio (or “near-audio”) rate. The exact sample rate is less critical for the input than the output &mdash; fast enough is fast enough.</dd></div>
-<div><dt>Gate input</dt><dd>This is a digital input for note-start and note-stop signals. These signals should be handled fairly promptly &mdash; within a millisecond or so is OK.</dd></div>
+<dl class="inline">
+<dt>Audio output</dt><dd>Audio samples <em>must</em> be output at a fixed rate (specified to be 49152 Hz). Any variation in the output rate will sound bad.</dd>
+<dt>Analog CV inputs</dt><dd>Two analog control voltages must be sampled by the ADC at audio (or “near-audio”) rate. The exact sample rate is less critical for the input than the output &mdash; fast enough is fast enough.</dd>
+<dt>Gate input</dt><dd>This is a digital input for note-start and note-stop signals. These signals should be handled fairly promptly &mdash; within a millisecond or so is OK.</dd>
 </dl>
 
 <p>There are also some lower-priority tasks, <i>e.g.</i> updating the OLED display, which are not discussed here because it doesn’t matter much if they don’t always run on time.</p>

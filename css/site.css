@@ -330,39 +330,49 @@ dl dd {
     margin-left: 1em;
 }
 
-/* KLUDGE: To get <dt> and <dd> on the same line, put them in a <div>.
-   (I want to make <dl> do that without <div> but sadly that's not possible.)
-   Hanging indentation for the dingbat makes it more complicated too. */
-dl > div {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    padding-left: 1em;
-    text-indent: -1em;
-}
-
-dl > div > dt {
-    display: inline;
-}
-
-dl > div::before {
-    content: url(dings.gif);
-    padding-right: 7px; /* width: doesn't work */
-}
-
-dl > div > dd {
-    display: inline;
-    margin-left: 0;
-}
-
-dl > div > dd::before {
-    content: " \2014  ";
-}
-
 dd > p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     margin-left: 0;
     text-indent: 0;
+}
+
+/* <dl class="inside"> puts <dt> and <dd> on one line */
+dl.inline {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+dl.inline dt {
+    display: inline
+}
+
+dl.inline dt::before {
+    content: url(dings.gif);
+    padding-right: 7px; /* width: doesn't work */
+}
+
+dl.inline dd {
+    display: inline;
+    margin-left: 0;
+}
+
+dl.inline dd::before {
+    content: " \2014  ";
+}
+
+dl.inline dd::after {
+    content: "\a"; /* line break */
+    white-space-collapse: preserve;
+}
+
+dl.inline dd:last-of-type::after {
+    content: none;
+    white-space-collapse: inherit;
+}
+
+dl.inline dd > p {
+    margin-left: 1em;
 }
 
 table {
