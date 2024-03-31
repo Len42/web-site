@@ -214,7 +214,9 @@ code {
     border-radius: 3px;
 }
 
-p code { /* TODO: add other container elements as required */
+p code,
+li code,
+dd code { /* TODO: add other container elements as required */
     display: inline-block;
     padding: 0 0.3em;
     margin: 0;
