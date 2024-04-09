@@ -57,6 +57,11 @@ body > header nav {
     padding-left: 2rem;
 }
 
+header hgroup .logo {
+    float:left;
+    padding-right: 0.5rem;
+}
+
 main {
     min-width: 200px;
     max-width: 800px;
