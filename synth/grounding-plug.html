@@ -21,16 +21,22 @@
 </header>
 
 <main>
-<p>This is something that you probably don't need for your Eurorack synth: An input grounding plug.</p>
+<p>This is something that you probably don’t need for your Eurorack synth: An input grounding plug.</p>
 
 <aside><a href="grounding-plug.jpg"><img src="grounding-plug.jpg" alt="grounding plug"></a></aside>
 
-<p>It's simply a patch plug with the signal (tip contact) connected to ground (sleeve contact),
-and a ground symbol painted on the side so I don't forget what it is.</p>
+<p>The purpose of this grounding plug is to override the “normal” connection of an input jack, forcing the input to 0 volts (ground).
+It’s simply a 1/8" plug with the signal (tip contact) connected to ground (sleeve contact), and a ground symbol painted on the side so I don’t forget what it is.</p>
 
-<p>The purpose of this grounding plug is to override the "normal" connection of an input jack, forcing the input to 0 volts (ground).</p>
+<p>In my homebrew modular system I use the CV and gate lines on the Eurorack system bus to play notes. These lines are
+<a href="https://github.com/Len42/Synth/tree/main/modules/Bus-Driver#readme">driven</a> from a keyboard or DAW, and I have several modules with gate or volt-per-octave pitch inputs which are normalled to the system bus. This saves a lot of cabling in the type of patches I usually make.
+(Most Eurorack modules don’t take advantage of this feature, which is one reason why you probably don’t need this plug.)</p>
 
-<p>TODO: why?</p>
+<p>However, there are times when I want a module to <em>not</em> use the volt-per-octave pitch signal &mdash; for example, using a VCF as a fixed-frequency formant filter &mdash; so I need it to ignore the normalled signal from the bus. The usual way to do this is to plug a patch cable into the input and leave the other end of the cable hanging. That disconnects the normalled signal and leaves the input completely unconnected.</p>
+
+<p>In theory, you’re not supposed to leave an input hanging like that because it could pick up noise. Hence, this grounding plug, which makes sure the unused input has a solid ground connection while being disconnected from the normalled signal. (In practice, I haven’t noticed any problem with unconnected Eurorack inputs, which is another reason why you don’t need this thing.)</p>
+
+<p>As a bonus, this plug looks better than a dangling cable. Maybe that’s why you need it.</p>
 </main>
 
 <footer>
