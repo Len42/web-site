@@ -35,7 +35,7 @@
 <ul>
 <li><a href="https://cmake.org/">CMake</a></li>
 <li><a href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads">Arm GNU Toolchain</a> (GCC compiler for Arm)</li>
-<li><a href="https://github.com/raspberrypi/pico-sdk"></a>Raspberry Pi Pico C/C++ SDK</li>
+<li><a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico C/C++ SDK</a></li>
 </ul>
 
 <p><a href="https://lenp.net/dev/rp2040-dev-setup.html">Here are step-by-step instructions</a> for setting up a development environment on Windows using Visual Studio Code.</p>
@@ -52,7 +52,9 @@
 <li>Communicating with a computer over a USB-serial connection</li>
 </ul>
 
-<p>The firmware is written in C++ using the <a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico C/C++ SDK</a>. The Dexy module uses an <a href="https://www.adafruit.com/product/5302">Adafruit KB2040</a> board but the firmware can run on a <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> or other compatible board; my prototype used an <a href="https://www.adafruit.com/product/4884">Adafruit Feather RP2040</a>. To use a different RP2040 board, the I/O pin definitions in Gpio.h must be changed (and of course the PCB layout must be modified).</p>
+<p>The firmware is written in C++ using the <a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico C/C++ SDK</a>. The Dexy module uses an <a href="https://www.adafruit.com/product/5302">Adafruit KB2040</a> board but the firmware can run on a <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a> or other compatible board; my prototype used an <a href="https://www.adafruit.com/product/4884">Adafruit Feather RP2040</a>. To use a different RP2040 board, the I/O pin definitions in
+<a href="https://github.com/Len42/Dexy/blob/main/firmware/Gpio.h"><kbd>Gpio.h</kbd></a>
+must be changed (and of course the PCB layout must be modified).</p>
 
 <p>The RP2040 microcontroller has two CPU cores, and the Dexy firmware uses both of them.</p>
 
