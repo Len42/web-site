@@ -256,11 +256,14 @@ p {
 }
 
 blockquote {
-    padding: 0 0 0 2em;
+    padding: 0 2em 0 2em;
     margin-top: 0;
     margin-left: 0;
+    min-height: 32px;
 	color: rgb(51,103,153);
-    background: url("quote.png") top left no-repeat;
+    background-image: url("quote.png"), url("quote2.png");
+    background-position: top left, bottom right;
+    background-repeat: no-repeat;
 }
 
 blockquote > :first-child {
