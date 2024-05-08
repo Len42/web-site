@@ -126,20 +126,20 @@ h6 {
 h1 {
     margin: 0.67em 0;
     padding-bottom: 0.3em;
-    padding-left: 20px;
+    padding-left: 0.6em;
     font-size: 2em;
 	color: rgb(51,103,153);
     border-bottom: 1px solid rgb(168,200,220);
-	background: url(ding.png) no-repeat left top 40%;
+	background: url(ding.svg) no-repeat left top 0.4em;
+    background-size: 0.4em
 }
 
 h2 {
-    /*padding-bottom: 0.3em;*/
-    padding-left: 20px;
+    padding-left: 0.6em;
     font-size: 1.5em;
 	color: rgb(51,103,153);
-    /*border-bottom: 1px solid rgb(168,200,220);*/
-	background: url(ding.png) no-repeat left top 40%;
+	background: url(ding.svg) no-repeat left top 0.4em;
+    background-size: 0.4em
 }
 
 h3 {
@@ -221,6 +221,7 @@ code {
 
 p code,
 li code,
+dt code,
 dd code { /* TODO: add other container elements as required */
     display: inline-block;
     padding: 0 0.3em;
@@ -284,13 +285,17 @@ blockquote footer::before {
     content: "\2014  "
 }
 
-ul,
+ul {
+    padding-left: 1em;
+}
+
 ol {
     padding-left: 2em;
 }
 
 ul {
-    list-style-image: url(dings.gif);
+	list-style-image: none;
+    list-style-type: none;
 }
 
 ul ul,
@@ -313,6 +318,12 @@ ol ol ol {
     list-style-type: lower-alpha;
 }
 
+ul > li {
+    padding-left: 0.8em;
+	background: url(ding.svg) no-repeat left top 0.45em;
+    background-size: 0.5em
+}
+
 li::marker {
 	color: rgb(51,103,153);
 }
@@ -324,17 +335,21 @@ li > p {
 
 dl {
 	list-style: inside;
-	list-style-image: url(dings.gif);
+	list-style-image: none;
+    list-style-type: none;
 }
 
 dl dt {
     display: list-item;
 	font-weight: bold;
 	color: rgb(51,103,153);
+    padding-left: 0.8em;
+	background: url(ding.svg) no-repeat left top 0.5em;
+    background-size: 0.5em
 }
 
 dl dd {
-    margin-left: 1em;
+    margin-left: 0.8em;
 }
 
 dd > p {
@@ -351,12 +366,8 @@ dl.inline {
 }
 
 dl.inline dt {
-    display: inline
-}
-
-dl.inline dt::before {
-    content: url(dings.gif);
-    padding-right: 7px; /* width: doesn't work */
+    display: inline;
+    background-position-y: 0.25em;
 }
 
 dl.inline dd {
@@ -416,7 +427,6 @@ body > header h1 {
     margin-top: 0;
     margin-bottom: 0.2em;
     padding: 0;
-    /*font-size: 5vmin;*/
     font-size: 2em;
 	color: rgb(168,200,220);
     border-bottom: none;
@@ -452,13 +462,10 @@ body > header nav cite {
 
 /* Header linkline is a <ul> with inline <li> formatting */
 body > header nav ul {
-    padding: 0;
+    padding: 0 0 0 0.75em;
     margin-bottom: 1em;
-}
-
-body > header nav ul::before {
-    content: url(dingsh.gif);
-    padding-right: 0px;
+	background: url(dingh.svg) no-repeat left top 0.5em;
+    background-size: 0.53em
 }
 
 body > header nav li {
