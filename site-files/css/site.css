@@ -460,12 +460,37 @@ body > header nav cite {
     font-style: normal;
 }
 
-/* Header linkline is a <ul> with inline <li> formatting */
+/* Header linkline is a <ul> with inline <li> formatting.
+   On a small display it's hidden until the icon is clicked. */
 body > header nav ul {
-    padding: 0 0 0 0.75em;
+    display: none; /* will be shown if screen is wide enough - see below */
+    padding: 0;
     margin-bottom: 1em;
-	background: url(dingh.svg) no-repeat left top 0.5em;
-    background-size: 0.53em
+}
+body > header nav label {
+    display: inline-block;
+    padding: 0 0 0 28px;
+    margin: 0 0 1em 0;
+	background: url(navh.svg) no-repeat left top 0.3em;
+    background-size: 30px
+}
+body > header nav #navCheck {
+    display: none
+}
+body > header nav #navCheck:checked + ul {
+    display: inline-block
+}
+@media (min-width: 40rem) {
+    /* On a wide screen, display the linkline with a small dingbat */
+    body > header nav ul {
+        display: inline-block;
+        padding-left: 0.75em;
+        background: url(dingh.svg) no-repeat left top 0.5em;
+        background-size: 0.53em
+    }
+    body > header nav label {
+        display: none;
+    }
 }
 
 body > header nav li {
