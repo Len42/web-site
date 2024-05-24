@@ -480,7 +480,7 @@ body > header nav #navCheck {
 body > header nav #navCheck:checked + ul {
     display: inline-block
 }
-@media (min-width: 40rem) {
+@media (min-width: 50rem) {
     /* On a wide screen, display the linkline with a small dingbat */
     body > header nav ul {
         display: inline-block;
@@ -544,7 +544,7 @@ g-col {
     display: inline
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 50rem) {
     g-row {
         width: 100%;
         display: table;
