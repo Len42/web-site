@@ -519,7 +519,7 @@ g-col {
     display: inline
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 40rem) {
     g-row {
         width: 100%;
         display: table;
