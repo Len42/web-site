@@ -197,6 +197,7 @@ aside {
     max-width: 50%;
     font-style: italic;
 	color: rgb(51,103,153);
+    background: white;
 }
 
 aside img,
