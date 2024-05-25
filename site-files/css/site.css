@@ -454,6 +454,7 @@ body > header strong {
 }
 
 body > header nav {
+    display: flex;
     font-style: italic;
 }
 
@@ -467,11 +468,10 @@ body > header nav cite {
    On a small display it's hidden until the icon is clicked. */
 body > header nav ul {
     display: none; /* will be shown if screen is wide enough - see below */
-    padding: 0;
+    padding: 0 0 0 0.1em;
     margin-bottom: 1em;
 }
 body > header nav label {
-    display: inline-block;
     padding: 0 0 0 28px;
     margin: 0 0 1em 0;
 	background: url(navh.svg) no-repeat left top 0.3em;
@@ -500,8 +500,8 @@ body > header nav li {
     display: inline;
 	list-style-type: none;
 	background: none;
-    padding-left: 6px;
-    padding-right: 2px;
+    padding-left: 0.45em;
+    padding-right: 0.15em;
 	border-left: 1px solid rgb(168,200,220);
     font-size: 0.85em;
 }
