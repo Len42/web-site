@@ -32,16 +32,30 @@
 <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh">Raspberry Pi Pico W</a>
 and <a href="https://circuitpython.org/">CircuitPython</a>
 to monitor NASA JPL’s <a href="https://cneos.jpl.nasa.gov/sentry/">Sentry</a> service
-and warn of potential Earth-threatening asteroids.</p>
+and warn of potential Earth-threatening asteroids. Know when to panic!
+<no-wrap>🌎🌠😱</no-wrap></p>
 
-<aside><p>If you want to do this on your computer instead of a stand-alone device, there’s <a href="https://github.com/Len42/asentry">a Python program</a> for that.</p></aside>
+<p>Source files for this project are on <a href="https://github.com/Len42/asentry-gadget">GitHub</a>.</p>
 
-Source files for this project are on <a href="https://github.com/Len42/asentry-gadget">GitHub</a>.
+<p>This project is based on <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">a project by Jeff Epler</a>.</p>
 
 <h1><a name="hardware"></a>Hardware</h1>
-<p>Blah blah.</p>
+<aside><p>If you want to do this on your computer instead of a stand-alone device, there’s <a href="https://github.com/Len42/asentry">a Python program</a> for that.</p></aside>
 
-<a href="wiring.png"><img src="wiring.png" alt="wiring diagram" width="510" height="390"></a>
+<p>The Pi Pico W connects to the internet via wifi, and it is also connected to an OLED display, an I2S audio amplifier, and a pushbutton. A PiCowbell proto board holds things together.</p>
+
+<aside><a href="wiring.png"><img src="wiring.png" alt="wiring diagram"></a></aside>
+<p>Here is a wiring diagram showing how the components are connected. Note that special cables are used for the OLED display and the speaker.</p>
+
+<p>The Pi Pico W is stacked on top of the PiCowbell board using header connectors, as shown below.</p>
+<g-row>
+<g-col><a href="picowbell1.jpg"><img src="picowbell1.jpg" alt="Pico W and PiCowbell"></a></g-col>
+<g-col><a href="picowbell2.jpg"><img src="picowbell2.jpg" alt="Pico W and PiCowbell"></a></g-col>
+</g-row>
+
+<p>TODO: headers for button & I2S</p>
+
+<p>TODO: BOM, including cables & connectors</p>
 
 <h1><a name="firmware"></a>Firmware</h1>
 <p>Blah blah.</p>
@@ -52,7 +66,9 @@ Source files for this project are on <a href="https://github.com/Len42/asentry-g
 <h2>Installing the Firmware</h2>
 <p>TODO: <a href="https://github.com/Len42/asentry-gadget/releases/latest/download/firmware.zip">firmware files</a></p>
 
-TODO: settings.toml
+<p>TODO: settings.toml</p>
+
+<p>TODO: alert.wav</p>
 
 </main>
 
