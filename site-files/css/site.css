@@ -89,6 +89,16 @@ a:link {
 	text-decoration: none;
 }
 
+strong a:link,
+blockquote a:link,
+figcaption a:link,
+footer a:link,
+code a:link,
+kbd a:link,
+aside a:link {
+    color: black
+}
+
 a:visited  {
 	color: rgb(128,128,128);
 	text-decoration: none;
