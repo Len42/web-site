@@ -28,21 +28,28 @@
 <aside><a href="asentry.jpg"><img src="asentry.jpg" alt="asentry device"></a></aside>
 
 <h1><a name="overview"></a>Overview</h1>
-<p>This device uses a
+<p>I used a
 <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh">Raspberry Pi Pico W</a>
 and <a href="https://circuitpython.org/">CircuitPython</a>
-to monitor NASA JPL’s <a href="https://cneos.jpl.nasa.gov/sentry/">Sentry</a> service
-and warn of potential Earth-threatening asteroids. Know when to panic!
-<no-wrap>🌎🌠😱</no-wrap></p>
+to make a device that monitors NASA JPL’s
+<a href="https://cneos.jpl.nasa.gov/sentry/">Sentry</a> web service
+and warns of potential Earth-threatening asteroids. This is a description of how it’s made.
+Know when to panic! <no-wrap>🌎🌠😱</no-wrap></p>
 
-<p>Source files for this project are on <a href="https://github.com/Len42/asentry-gadget">GitHub</a>.</p>
+<p>Source code and design files for this project are on <a href="https://github.com/Len42/asentry-gadget">GitHub</a>.</p>
 
-<p>This project is based on <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">a project by Jeff Epler</a>.</p>
+<p>This device is based on <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">a project by Jeff Epler</a>.</p>
+
+<aside><p>If you want to get asteroid alerts on your computer instead of making a stand-alone device, there’s <a href="https://github.com/Len42/asentry">a Python program</a> for that.</p></aside>
 
 <h1><a name="hardware"></a>Hardware</h1>
-<aside><p>If you want to do this on your computer instead of using a stand-alone device, there’s <a href="https://github.com/Len42/asentry">a Python program</a> for that.</p></aside>
-
-<p>The Pico W connects to the internet via wifi, and it is also connected to an OLED display, an I2S audio amplifier, and a pushbutton. A PiCowbell proto board holds things together.</p>
+<p>The <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh">Pico W</a>
+connects to the internet via wifi, and it is also connected to
+an <a href="https://www.adafruit.com/product/938">OLED display</a>,
+an <a href="https://www.adafruit.com/product/5770">I2S audio amplifier</a>,
+and a pushbutton.
+A <a href="https://www.adafruit.com/product/5200">PiCowbell proto board</a>
+holds things together.</p>
 
 <aside><a href="wiring.png"><img src="wiring.png" alt="wiring diagram"></a></aside>
 <p>Here is a wiring diagram showing how the components are connected. Note that special cables are used for the OLED display and the speaker.</p>
