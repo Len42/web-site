@@ -84,12 +84,26 @@ hooks things together.</p>
 <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython/installing-circuitpython">Click here for instructions.</a></p>
 
 <h2>Downloading the Code</h2>
-<p>TODO: <a href="https://github.com/Len42/asentry-gadget/releases/latest/download/firmware.zip">firmware files</a></p>
-<p>similar instructions: https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython/coding-the-text-generator</p>
+<p>The CircuitPython program and associated libraries are
+<a href="https://github.com/Len42/asentry-gadget/tree/main/firmware">published on GitHub</a>
+and can also be <a href="https://github.com/Len42/asentry-gadget/releases/latest/download/firmware.zip">downloaded in a .zip file</a>.</p>
 
-<p>TODO: settings.toml</p>
+<p>To get it running on the Pico W:</p>
+<ol>
+<li><a href="https://github.com/Len42/asentry-gadget/releases/latest/download/firmware.zip">Download the .zip file</a> to your computer and uncompress it.</li>
+<li>Connect the Pico W to your computer with a USB cable. It should show up as a drive named <kbd>CIRCUITPY</kbd>.</li>
+<li>Copy the files from the uncompressed .zip bundle to the <kbd>CIRCUITPY</kbd> drive.</li>
+<li>Use a text editor to open the file <kbd>settings.toml</kbd> on the <kbd>CIRCUITPY</kbd> drive
+and edit it to contain the correct wifi network name and password. It should look something like this:
+<p><code>CIRCUITPY_WIFI_SSID = "MyNetworkName"
+CIRCUITPY_WIFI_PASSWORD = "MyNetworkPassword"
+</code></p></li>
+<li>When the <kbd>settings.toml</kbd> file is saved, the program should restart and after a few seconds the OLED display should show “Fetching data”. If that doesn’t happen, unplug and replug the USB cable.</li>
+</ol>
 
-<p>TODO: alert.wav</p>
+<p><strong>Optional: </strong>If you copy an audio file named <kbd>alert.wav</kbd> to the <kbd>CIRCUITPY</kbd> drive, that sound will be played whenever an asteroid alert message is displayed. The <kbd>alert.wav</kbd> file should be a <em>brief</em> audio clip in WAV format.</p>
+
+<p>Once the device is up and running, it no longer needs to be connected to a computer &mdash; it may be plugged into a USB power supply instead.</p>
 
 <h2>Code Details</h2>
 
