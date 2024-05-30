@@ -41,7 +41,7 @@ Know when to panic! <no-wrap>🌎🌠😱</no-wrap></p>
 
 <p>This device is based on <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">a project by Jeff Epler</a>.</p>
 
-<aside><p>If you want to get asteroid alerts on your computer instead of making a stand-alone device, there’s <a href="https://github.com/Len42/asentry">a Python program</a> for that.</p></aside>
+<aside><p>If you want to get asteroid alerts on your computer instead of making a stand-alone device, <a href="https://github.com/Len42/asentry">there’s a Python program for that</a>.</p></aside>
 
 <h1><a name="hardware"></a>Hardware</h1>
 <p>The <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh">Pico W</a>
@@ -52,6 +52,8 @@ and a pushbutton.
 A <a href="https://www.adafruit.com/product/5200">PiCowbell proto board</a>
 hooks things together.</p>
 
+<p><a href="https://github.com/Len42/asentry-gadget/blob/main/hardware/bom.csv">The bill of materials (parts list) is here</a>, in spreadsheet-friendly text format.</p>
+
 <p>Here is a wiring diagram and photo showing how the components are connected.
 (<a href="https://github.com/Len42/asentry-gadget/raw/main/hardware/asentry.fzz">A Fritzing file is here.</a>)</p>
 <g-row>
@@ -59,8 +61,7 @@ hooks things together.</p>
 <g-col><a href="wiring2.jpg"><img src="wiring2.jpg" alt="wiring photo"></a></g-col>
 </g-row>
 
-<p>Note that special cables are used for the OLED display and the speaker.</p>
-TODO: header connectors vs soldered connections
+<p>Note that special cables are required for the OLED display and the speaker. To connect the Pico W to the pushbutton and the I2S board, I’ve made cables using header connectors (which are way too long), but those wires can be soldered directly point-to-point.</p>
 
 <p>The Pico W is stacked on top of the PiCowbell board using header connectors, as shown below.</p>
 <g-row>
@@ -68,14 +69,10 @@ TODO: header connectors vs soldered connections
 <g-col><a href="picowbell2.jpg"><img src="picowbell2.jpg" alt="Pico W and PiCowbell"></a></g-col>
 </g-row>
 
-<p>TODO: headers for button & I2S</p>
-
-<p>TODO: BOM, including cables & connectors</p>
-
 <h1><a name="firmware"></a>Firmware</h1>
 <p>The firmware that runs on the Pico W has to perform several tasks:</p>
 <ul>
-<li>Send HTTP requests to NASA's Sentry web service</li>
+<li>Send HTTP requests to NASA’s Sentry web service</li>
 <li>Parse the result data, which is in JSON format</li>
 <li>Display alert messages on the OLED display</li>
 <li>Play alarm sounds using the I2S amplifier</li>
