@@ -202,17 +202,22 @@ figcaption {
 }
 
 aside {
-    float: right;
-    margin: 0.2rem 0 0.2rem 0.5rem;
-    max-width: 50%;
     font-style: italic;
 	color: rgb(51,103,153);
     background: white;
 }
 
-aside img,
-aside figure {
-    margin: 0
+@media (min-width: 50rem) {
+    aside {
+        float: right;
+        margin: 0.2rem 0 0.2rem 0.5rem;
+        max-width: 50%;
+    }
+
+    aside img,
+    aside figure {
+        margin: 0
+    }
 }
 
 code,
