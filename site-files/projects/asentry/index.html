@@ -37,11 +37,17 @@ to make a device that monitors NASA JPL’s
 and warns of potential Earth-threatening asteroids. This is a description of how it’s made.
 Know when to panic! <no-wrap>🌎🌠😱</no-wrap></p>
 
-<p>Source code and design files for this project are available <a href="https://github.com/Len42/asentry-gadget">on GitHub</a>.</p>
+<p>Source code and design files for this project are available <a href="https://github.com/Len42/asentry-gadget">on GitHub.</a></p>
 
-<p>This device is based on <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">a project by Jeff Epler</a>.</p>
+<p>This device is based on <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">a project by Jeff Epler.</a></p>
 
-<aside><p>If you want to get asteroid alerts on your computer instead of making a stand-alone device, <a href="https://github.com/Len42/asentry">there’s a Python program for that</a>.</p></aside>
+<h2>The Sentry System</h2>
+<p><a href="https://www.jpl.nasa.gov/">NASA's Jet Propulsion Laboratory</a> operates the
+<a href="https://cneos.jpl.nasa.gov/sentry/">Sentry system</a> which keeps track of Earth-approaching asteroids, predicts their orbits, and assigns each one a threat level indicating its impact risk.</p>
+
+<aside><p>If you want to get asteroid alerts on your computer instead of making a stand-alone device, <a href="https://github.com/Len42/asentry">there’s a Python program for that.</a></p></aside>
+
+<p>The Sentry system provides a web API to query its database and return results in JSON format. This device uses that to get information about the asteroids that are most likely to hit the Earth.</p>
 
 <h1><a name="hardware"></a>Hardware</h1>
 <p>The <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh">Pico W</a>
@@ -103,13 +109,16 @@ CIRCUITPY_WIFI_PASSWORD = "MyNetworkPassword"
 
 <p><strong>Optional: </strong>If you copy an audio file named <kbd>alert.wav</kbd> to the <kbd>CIRCUITPY</kbd> drive, that sound will be played whenever an asteroid alert message is displayed. The <kbd>alert.wav</kbd> file should be a <em>brief</em> audio clip in WAV format.</p>
 
-<p>Once the device is up and running, it no longer needs to be connected to a computer &mdash; it may be plugged into a USB power supply instead.</p>
+<p>Once the device is set up and running, it no longer needs to be connected to a computer &mdash; it may be plugged into a USB power supply instead.</p>
 
 <h2>Code Details</h2>
+<p>The CircuitPython code running in this device is <a href="https://github.com/Len42/asentry-gadget/blob/main/firmware/code.py">over here on GitHub</a>.</p>
+
+<p>The <code>adafruit_requests</code> library is used to send HTTP requests to the Sentry web service. It also parses the JSON result data into a Python dictionary.</p>
 
 <p>TODO: API doc https://ssd-api.jpl.nasa.gov/doc/sentry.html</p>
 
-<p>TODO: Python code: https://github.com/Len42/asentry-gadget/blob/main/firmware/code.py</p>
+<p>TODO: Python code: </p>
 
 <h1><a name="case"></a>Case</h1>
 <p>TODO</p>
