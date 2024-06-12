@@ -300,7 +300,7 @@ blockquote footer {
 
 blockquote footer::before {
     display: inline;
-    content: "\2014  "
+    content: "\2014 "
 }
 
 ul {
@@ -394,7 +394,7 @@ dl.inline dd {
 }
 
 dl.inline dd::before {
-    content: " \2014  ";
+    content: " \2013  ";
 }
 
 dl.inline dd::after {

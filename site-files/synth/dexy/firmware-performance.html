@@ -36,8 +36,8 @@
 <p>The time-critical tasks are:</p>
 <dl class="inline">
 <dt>Audio output</dt><dd>Audio samples <em>must</em> be output at a fixed rate (specified to be 49152 Hz). Any variation in the output rate will sound bad.</dd>
-<dt>Analog CV inputs</dt><dd>Two analog control voltages must be sampled by the ADC at audio (or “near-audio”) rate. The exact sample rate is less critical for the input than the output &mdash; fast enough is fast enough.</dd>
-<dt>Gate input</dt><dd>This is a digital input for note-start and note-stop signals. These signals should be handled fairly promptly &mdash; within a millisecond or so is OK.</dd>
+<dt>Analog CV inputs</dt><dd>Two analog control voltages must be sampled by the ADC at audio (or “near-audio”) rate. The exact sample rate is less critical for the input than the output &ndash; fast enough is fast enough.</dd>
+<dt>Gate input</dt><dd>This is a digital input for note-start and note-stop signals. These signals should be handled fairly promptly &ndash; within a millisecond or so is OK.</dd>
 </dl>
 
 <p>There are also some lower-priority tasks, <i>e.g.</i> updating the OLED display, which are not discussed here because it doesn’t matter much if they don’t always run on time.</p>
@@ -48,7 +48,7 @@
 <p>Timer interrupts are used to write output samples to the DAC and read input samples from the ADC at regular intervals. Gate signals are handled by a GPIO interrupt. Using interrupts for these tasks ensures that they run on time with the minimum possible delay.</p>
 
 <h1><a name="arithmetic"></a>Fixed-Point Arithmetic</h1>
-<p>The Cortex M0+ CPU does not have hardware to do floating-point arithmetic. Performing floating-point operations in software is much slower than doing it in hardware &mdash; far too slow for this application. But digital audio synthesis has to do a lot of mathematical calculations involving real numbers (<i>e.g.</i> calculating sine waves), which are usually represented in computer software as floating-point numbers.</p>
+<p>The Cortex M0+ CPU does not have hardware to do floating-point arithmetic. Performing floating-point operations in software is much slower than doing it in hardware &ndash; far too slow for this application. But digital audio synthesis has to do a lot of mathematical calculations involving real numbers (<i>e.g.</i> calculating sine waves), which are usually represented in computer software as floating-point numbers.</p>
 
 <p>One way to do artithmetic quickly on an integer CPU is to use a fixed-point representation for numbers. Fixed-point arithmetic is just integer arithmetic except you assume that the decimal point (or rather, the binary point) is at a specific position in the middle of the number. Care must be taken when multiplying and dividing to scale the numbers by a power of 2 (a simple bit-shift operation) to make sure they line up.</p>
 
@@ -60,13 +60,13 @@
 <p>Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 entries) with simple linear interpolation. This gives pretty accurate results very quickly.</p>
 
 <h1><a name="flash"></a>Flash Memory Problems</h1>
-<p>In the course of developing this firmware, I ran into a performance problem related to flash memory. Everything worked fine at first, but when I added some code to the firmware, it caused the time-critical audio generation code to run slower, to the point that it couldn’t generate output samples fast enough to keep up with the 49 kHz output rate. Strangely, the code that I added only ran at startup &mdash; the time-critical code had not changed at all!</p>
+<p>In the course of developing this firmware, I ran into a performance problem related to flash memory. Everything worked fine at first, but when I added some code to the firmware, it caused the time-critical audio generation code to run slower, to the point that it couldn’t generate output samples fast enough to keep up with the 49 kHz output rate. Strangely, the code that I added only ran at startup &ndash; the time-critical code had not changed at all!</p>
 
 <h2>Getting Technical</h2>
 <p>The RP2040 uses two types of memory:</p>
 <ul>
-<li>264 kB of static RAM on the chip &mdash; fast but small</li>
-<li>A few megabytes of flash memory on an external IC &mdash; slower but much larger, and read-only during normal operation</li>
+<li>264 kB of static RAM on the chip &ndash; fast but small</li>
+<li>A few megabytes of flash memory on an external IC &ndash; slower but much larger, and read-only during normal operation</li>
 </ul>
 
 <p>Code and read-only data are stored in flash. Variable data is stored in RAM.</p>
@@ -84,7 +84,7 @@
 
 <p>The <a href="https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf">Raspberry Pi Pico C/C++ SDK</a> provides a setting to force all of the firmware to be copied from flash to RAM at boot time so that all of the code and data are in RAM. The problem with this is that there is much less RAM (264 kB) than flash (a few MB).</p>
 
-<p>There is also a way to specify that particular functions and data should be stored in RAM or flash. I tried specifying that only the code and data in time-critical execution paths should be in RAM, leaving everything else in flash, but that didn’t quite work. It was still having trouble running fast enough. I think that there was still some time-critical code hiding somewhere in flash memory &mdash; probably the interrupt handlers in the Pi Pico SDK.</p>
+<p>There is also a way to specify that particular functions and data should be stored in RAM or flash. I tried specifying that only the code and data in time-critical execution paths should be in RAM, leaving everything else in flash, but that didn’t quite work. It was still having trouble running fast enough. I think that there was still some time-critical code hiding somewhere in flash memory &ndash; probably the interrupt handlers in the Pi Pico SDK.</p>
 
 <p>The eventual solution was to configure the settings so that everything is loaded into RAM by default, but code and data that are <em>not</em> time-critical are marked to be loaded into flash memory, to minimize the amount of RAM used. This works well and there are no more glitches in the audio output.</p>
 
