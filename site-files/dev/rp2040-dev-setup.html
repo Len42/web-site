@@ -111,7 +111,7 @@ git clone -b master https://github.com/raspberrypi/pico-examples.git
 <p>Set the path to the Pico SDK (only needs to be done once, not every time a build is done):</p>
 <code>setx PICO_SDK_PATH "..\..\pico-sdk"</code>
 
-<p><em>Note:</em> The absolute pathname of the <kbd>pico-sdk</kbd> directory may be used here instead of a relative pathname (e.g. <kbd>C:\Dev\Pico\pico-sdk</kbd>).</p>
+<p><em>Note:</em> The absolute pathname of the <kbd>pico-sdk</kbd> directory may be used here instead of a relative pathname, <i>e.g.</i> <kbd>C:\Dev\Pico\pico-sdk</kbd>.</p>
 
 <p>Close and re-open the <kbd>Developer Command Prompt</kbd> window to load that change. Navigate to the <kbd>Pico</kbd> directory again.</p>
 
@@ -158,7 +158,7 @@ will not be able to find the build tools.</p>
 
 <p>Navigate to the <kbd>CMake Tools settings</kbd>: Click on the <kbd>Manage</kbd> button in the bottom-left, then select <kbd>Settings</kbd>, then <kbd>Extensions</kbd>, then <kbd>CMake Tools</kbd>.</p>
 
-<p>Under <kbd>Cmake: Configure Environment</kbd>, click <kbd>Add Item</kbd> and add an item named <kbd>PICO_SDK_PATH</kbd> with the value <kbd>..\..\pico-sdk</kbd>.  (Again, the absolute pathname may be used instead, e.g. <kbd>C:\Dev\Pico\pico-sdk</kbd>.)</p>
+<p>Under <kbd>Cmake: Configure Environment</kbd>, click <kbd>Add Item</kbd> and add an item named <kbd>PICO_SDK_PATH</kbd> with the value <kbd>..\..\pico-sdk</kbd>.  (Again, the absolute pathname may be used instead, <i>e.g.</i> <kbd>C:\Dev\Pico\pico-sdk</kbd>.)</p>
 
 <p>If compiling for a supported RP2040 board other than the Pi Pico, add another item named 
 <kbd>PICO_BOARD</kbd> with the name of the board. The valid values are the names of the files in 

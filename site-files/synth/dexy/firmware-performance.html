@@ -48,7 +48,7 @@
 <p>Timer interrupts are used to write output samples to the DAC and read input samples from the ADC at regular intervals. Gate signals are handled by a GPIO interrupt. Using interrupts for these tasks ensures that they run on time with the minimum possible delay.</p>
 
 <h1><a name="arithmetic"></a>Fixed-Point Arithmetic</h1>
-<p>The Cortex M0+ CPU does not have hardware to do floating-point arithmetic. Performing floating-point operations in software is much slower than doing it in hardware &ndash; far too slow for this application. But digital audio synthesis has to do a lot of mathematical calculations involving real numbers (<i>e.g.</i> calculating sine waves), which are usually represented in computer software as floating-point numbers.</p>
+<p>The Cortex M0+ CPU does not have hardware to do floating-point arithmetic. Performing floating-point operations in software is much slower than doing it in hardware &ndash; far too slow for this application. But digital audio synthesis has to do a lot of mathematical calculations involving real numbers, <i>e.g.</i> calculating sine waves, which are usually done with floating-point numbers.</p>
 
 <p>One way to do artithmetic quickly on an integer CPU is to use a fixed-point representation for numbers. Fixed-point arithmetic is just integer arithmetic except you assume that the decimal point (or rather, the binary point) is at a specific position in the middle of the number. Care must be taken when multiplying and dividing to scale the numbers by a power of 2 (a simple bit-shift operation) to make sure they line up.</p>
 
@@ -73,7 +73,7 @@
 
 <p>In my firmware, the time-critical program code and lookup tables were stored in flash memory (by the default behaviour of the C++ compiler). Even though flash is slower than RAM, initial benchmark testing indicated that the time-critical code ran more than fast enough to do its job.</p>
 
-<p>Therefore it seemed strange that adding code <em>that only ran once at startup</em> should cause the audio generation code to run more slowly. In fact, I was able to show that just adding a few kilobytes of <em>unused</em> static data to the firmware (<i>e.g.</i> <code>static int buf[1000];</code>) would make it run slowly, but only if that extra data was stored in flash, not if it was in RAM.</p>
+<p>Therefore it seemed strange that adding code <em>that only runs once at startup</em> should cause the audio generation code to run more slowly. In fact, I was able to show that just adding a few kilobytes of <em>unused</em> static data to the firmware (<i>i.e.</i> <code>static int buf[1000]</code>) would make it run slowly, but only if that extra data was stored in flash, not if it was in RAM.</p>
 
 <p>It turned out that this inconsistent behaviour was caused by the RP2040’s internal cache for flash memory. This is a 16 kB block of RAM which is used to cache data that is read from flash, to speed up memory access when the same flash memory addresses are read repeatedly. As my firmware grew in size, and particularly because it uses some large lookup tables, the 16 kB cache was no longer big enough to hold all of the frequently-used code and data. Any change to the firmware can cause things to be stored at different addresses in flash, which changes which bytes get evicted from the cache as the program runs (due to the way memory addresses are mapped into the cache), which can cause some time-critical code or data bytes to be loaded (slowly) from flash instead of (quickly) from the RAM cache.</p>
 
