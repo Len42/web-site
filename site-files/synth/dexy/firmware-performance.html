@@ -40,7 +40,7 @@
 <dt>Gate input</dt><dd>This is a digital input for note-start and note-stop signals. These signals should be handled fairly promptly &ndash; within a millisecond or so is OK.</dd>
 </dl>
 
-<p>There are also some lower-priority tasks, <i>e.g.</i> updating the OLED display, which are not discussed here because it doesn’t matter much if they don’t always run on time.</p>
+<p>There are also some lower-priority tasks, <i>e.g.</i> updating the OLED display, that don’t really need to run precisely on time. Those tasks are handled by a simple task scheduler which is not discussed here..</p>
 
 <h1><a name="cores"></a>CPU Cores and Interrupts</h1>
 <p>The CPU in the RP2040 is a dual-core <a href="https://developer.arm.com/Processors/Cortex-M0-Plus">ARM Cortex M0+</a>. In this application, one core is dedicated to generating and outputing the audio samples. Everything else, including reading the ADC inputs and various lower-priority tasks, runs on the other CPU core.</p>
@@ -60,7 +60,9 @@
 <p>Complete lookup tables for 16-bit or 32-bit quantities would be too large, so smaller tables are used (512 entries) with simple linear interpolation. This gives pretty accurate results very quickly.</p>
 
 <h1><a name="flash"></a>Flash Memory Problems</h1>
-<p>In the course of developing this firmware, I ran into a performance problem related to flash memory. Everything worked fine at first, but when I added some code to the firmware, it caused the time-critical audio generation code to run slower, to the point that it couldn’t generate output samples fast enough to keep up with the 49 kHz output rate. Strangely, the code that I added only ran at startup &ndash; the time-critical code had not changed at all!</p>
+<p>In the course of developing this firmware, I ran into a performance issue with some strange behaviour. Everything worked fine at first, but when I added some code to the firmware, it caused the time-critical audio generation code to run slower, to the point that it couldn’t generate output samples fast enough to keep up with the 49 kHz output rate. Strangely, the code that I added only ran at startup &ndash; the time-critical code had not changed at all! Even playing different notes could cause the problem to come and go.</p>
+
+<p>This problem had me baffled at first. Read on for my analysis and solution.</p>
 
 <h2>Getting Technical</h2>
 <p>The RP2040 uses two types of memory:</p>
@@ -75,7 +77,7 @@
 
 <p>Therefore it seemed strange that adding code <em>that only runs once at startup</em> should cause the audio generation code to run more slowly. In fact, I was able to show that just adding a few kilobytes of <em>unused</em> static data to the firmware (<i>i.e.</i> <code>static int buf[1000]</code>) would make it run slowly, but only if that extra data was stored in flash, not if it was in RAM.</p>
 
-<p>It turned out that this inconsistent behaviour was caused by the RP2040’s internal cache for flash memory. This is a 16 kB block of RAM which is used to cache data that is read from flash, to speed up memory access when the same flash memory addresses are read repeatedly. As my firmware grew in size, and particularly because it uses some large lookup tables, the 16 kB cache was no longer big enough to hold all of the frequently-used code and data. Any change to the firmware can cause things to be stored at different addresses in flash, which changes which bytes get evicted from the cache as the program runs (due to the way memory addresses are mapped into the cache), which can cause some time-critical code or data bytes to be loaded (slowly) from flash instead of (quickly) from the RAM cache.</p>
+<p>It turned out that this inconsistent behaviour was caused by the RP2040’s internal cache for flash memory. This is a 16 kB block of RAM which is used to cache data that is read from flash, to speed up memory access when the same flash memory addresses are read repeatedly. As my firmware grew in size, and particularly because it uses some large lookup tables, the 16 kB cache was no longer big enough to hold all of the frequently-used code and data. Any change to the firmware can cause things to be stored at different addresses in flash, which changes which bytes get evicted from the cache as the program runs (due to the way memory addresses are mapped into the cache), which can cause some time-critical code or data bytes to be loaded (slowly) from flash instead of (quickly) from the RAM cache. Even playing different notes will change the memory access pattern because it changes which entries in the waveform lookup table are used.</p>
 
 <p>There is enough of a speed difference between on-chip RAM and external flash memory that poor caching behaviour was enough to make the time-critical code that calculates the audio output samples too slow to do its job.</p>
 
@@ -87,6 +89,8 @@
 <p>There is also a way to specify that particular functions and data should be stored in RAM or flash. I tried specifying that only the code and data in time-critical execution paths should be in RAM, leaving everything else in flash, but that didn’t quite work. It was still having trouble running fast enough. I think that there was still some time-critical code hiding somewhere in flash memory &ndash; probably the interrupt handlers in the Pi Pico SDK.</p>
 
 <p>The eventual solution was to configure the settings so that everything is loaded into RAM by default, but code and data that are <em>not</em> time-critical are marked to be loaded into flash memory, to minimize the amount of RAM used. This works well and there are no more glitches in the audio output.</p>
+
+<p>In retrospect, it’s not surprising that this sort of inconsistent behaviour would be caused by  inconsistent memory performance due to caching. The lesson here is that it can be very challenging to do reasonable benchmarking and performance analysis on a system with memory caching or non-uniform access &ndash; <i>i.e.</i> any modern CPU.</p>
 
 </main>
 
