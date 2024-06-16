@@ -381,11 +381,14 @@ dd > p {
 dl.inline {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    margin-left: 0.75em;
 }
 
 dl.inline dt {
     display: inline;
     background-position-y: 0.25em;
+    margin-left: -0.75em;
+
 }
 
 dl.inline dd {
