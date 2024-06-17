@@ -38,7 +38,7 @@ Hardware and software are open source. GitHub repository is <a href="https://git
 <li>10 HP <a href="https://en.wikipedia.org/wiki/Eurorack">Eurorack</a> module</li>
 <li>Based on an <a href="https://www.adafruit.com/product/5302">Adafruit KB2040</a> board with an <a href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">RP2040 microcontroller</a> (similar to <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html">Raspberry Pi Pico</a>)</li>
 <li>Inputs: Gate, pitch (1V/octave), pitch modulation, timbre modulation</li>
-<li>Gate and 1V/oct inputs can be normalled from the Eurorack bus (jumper-selectable) - more info <a href="../eurorack-bus-cv-gate.html">here</a></li>
+<li>Gate and 1V/oct inputs can be normalled from the Eurorack bus (jumper-selectable) &ndash; more info <a href="../eurorack-bus-cv-gate.html">here</a></li>
 <li>Attenutators on the modulation inputs</li>
 <li>Timbre control knob</li>
 <li>Rotary encoder and OLED display for patch selection and note animations</li>
@@ -70,7 +70,7 @@ and a 14-bit ADC would give better results for the the 1V/octave pitch CV input.
 I couldn’t find a good, cheap, usable 14-bit ADC chip, so I’m sticking with the built-in
 ADC.</p>
 
-<p>The two pitch CV inputs - 1V/oct and modulation - are added together by an op-amp and
+<p>The two pitch CV inputs &ndash; 1V/oct and modulation &ndash; are added together by an op-amp and
 read by a single ADC channel, instead of having separate ADC inputs for the two inputs.
 Same for the timbre control and timbre mod CV. These CV inputs need an op-amp stage to
 scale them down to the RP2040’s voltage range (0 to +3.3 V), so it’s easy to add them
