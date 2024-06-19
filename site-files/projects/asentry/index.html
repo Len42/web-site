@@ -53,7 +53,7 @@ and warns of potential Earth-threatening asteroids. This is a description of how
 <p>If no new threats are found, “No new threats” is displayed for a few seconds, then the device waits for an hour before querying the Sentry service again. If the pushbutton is pressed, it will stop waiting and do the next check immediately.</p>
 
 <h2>The Sentry System</h2>
-<p><a href="https://www.jpl.nasa.gov/">NASA's Jet Propulsion Laboratory</a> operates the
+<p><a href="https://www.jpl.nasa.gov/">NASA’s Jet Propulsion Laboratory</a> operates the
 <a href="https://cneos.jpl.nasa.gov/sentry/">Sentry system</a> which keeps track of Earth-approaching asteroids, predicts their orbits, and assigns each one a threat level indicating its impact risk.</p>
 
 <p>The Sentry system provides a web API to query its database and return results in JSON format. This device uses that to get information about the asteroids that are most likely to hit the Earth.</p>
@@ -123,7 +123,7 @@ CIRCUITPY_WIFI_PASSWORD = "MyNetworkPassword"
 <h2>Code Details</h2>
 <p>The CircuitPython code running in this device is <a href="https://github.com/Len42/asentry-gadget/blob/main/firmware/code.py">over here on GitHub</a>.</p>
 
-<p>The <a href="https://ssd-api.jpl.nasa.gov/doc/sentry.html">Sentry system's web API is documented here.</a></p>
+<p>The <a href="https://ssd-api.jpl.nasa.gov/doc/sentry.html">Sentry system’s web API is documented here.</a></p>
 
 <p>Several CircuitPython libraries are used which are not included in the base CircuitPython distribution. These libraries are included in the firmware download (<a href="#download">see above</a>).</p>
 
@@ -136,6 +136,8 @@ CIRCUITPY_WIFI_PASSWORD = "MyNetworkPassword"
 covered with with printed and painted decoration on
 <a href="https://www.avery.ca/en/avery-shipping-labels-with-trueblock-technology-for-laser-and-inkjet-printers-11inch-x-8-1-2inch-5265-rectangle-white.html">adhesive paper</a>,
 with <a href="https://www.amazon.ca/Swingline-SelfSeal-Adhesive-Laminating-3747308/dp/B00006IASA?th=1">clear adhesive lamination</a> for protection.</p>
+
+<p>Inside is a mess of wires and hot glue, but apparently the electrons don’t mind.</p>
 
 <g-row>
 <g-col><a href="case.jpg"><img src="case.jpg" alt="case"></a></g-col>
