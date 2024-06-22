@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Attenuator - Len’s Stuff</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<a href="/"><img src="../../assets/logo.jpg" class="logo" alt="home"></a>
+<h1>Attenuator</h1>
+<p>Eurorack attenuator dongle</p>
+</hgroup>
+<nav>
+<!--nav button--><label for="navCheck">&nbsp;</label><input type="checkbox" id="navCheck">
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#notes">Notes</a></li>
+<li>Back to <a href="..">Synth</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<aside><a href="attenuator.jpg"><img src="attenuator.jpg" alt="Attenuator dongle"></a></aside>
+
+<h1><a name="features"></a>Features</h1>
+<ul>
+<li>Passive attenuator, approximately -20 dB</li>
+<li>A small dongle that can be patched between modules or devices</li>
+<li>Bidirectional &ndash; plug it in either way around!</li>
+</ul>
+
+<h1><a name="notes"></a>Notes</h1>
+<aside><a href="attenuator-in-action.jpg"><img src="attenuator-in-action.jpg" alt="Attenuator dongle"></a></aside>
+
+<p>I made two of these small attenuator dongles for my Eurorack system because I kept running into situations where I want to knock down the signal level by a large amount. I have a fancy
+<a href="https://github.com/Len42/Synth/tree/main/modules/Attenuverter#readme">attenuverter module</a>
+but I just wanted something small and simple that would leave the attenuverter free for more important jobs.</p>
+
+<p>My particular reasons for using this attenuator are:</p>
+<dl class="inline">
+<dt>Using a tuner (or other external device)</dt>
+<dd>I have a <a href="https://www.korg.com/caen/products/tuners/ot_120/">tuner</a> that has trouble with the signal level straight out of a Eurorack VCO, so I keep one of these attenuators plugged into the tuner.</dd>
+<dt>Bad design choices</dt>
+<dd>I made the pitch mod inputs on my oscillator modules way too sensitive. Even though there’s an attenuator control on the input, it’s hard to get a reasonable vibrato when I patch in an LFO. Sending the LFO through this attenuator gives a much better range of adjustment on the pitch mod input, for most purposes.</dd>
+</dl>
+
+<p>The device is assembled on a small piece of stripboard PCB. (See the layout diagram below.)</p>
+
+<p><a href="https://github.com/Len42/Synth/tree/main/misc/Attenuator">Design files are on GitHub.</a></p>
+
+<p>Please note that I am a hobbyist, not a trained electronics engineer. No guarantees!</p>
+
+<g-row>
+<g-col><figure><a href="schematic.png"><img src="schematic.png" alt="Stripboard layout diagram"></a><figcaption>Schematic diagram</figcaption></figure></g-col>
+<g-col><figure><a href="layout.png"><img src="layout.png" alt="Stripboard layout diagram"></a><figcaption>Stripboard layout diagram</figcaption></figure></g-col>
+</g-row>
+
+</main>
+
+<footer><g-row>
+<g-col style="width: 80px; vertical-align: middle">
+<img src="https://i0.wp.com/www.oshwa.org/wp-content/uploads/2014/03/oshw-logo-100-px.png" width=71 height=75 /></g-col>
+<g-col style="vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a><br>
+© 2023-2024 Len Popp. This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</g-col>
+</g-row></footer>
+
+
+</body>
+</html>
