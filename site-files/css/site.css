@@ -10,6 +10,8 @@
 
 /* TODO: forms */
 
+@import url("fonts.css");
+
 @viewport {
     zoom: 1.0;
     width: extend-to-zoom;
@@ -22,8 +24,8 @@
 html {
     text-size-adjust: 100%;
     color: black;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 1.05rem;
     line-height: 1.5;
     overflow-wrap: break-word;
     height: 100%;
@@ -57,9 +59,19 @@ body > header nav {
     padding-left: 2rem;
 }
 
-header hgroup .logo {
+body > header hgroup .logo {
     float:left;
     padding-right: 0.5rem;
+}
+
+body > header hgroup h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    font-size: 2em;
+	color: rgb(168,200,220);
+    border-bottom: none;
+    background: none;
 }
 
 main {
@@ -222,7 +234,7 @@ aside {
 
 code,
 kbd {
-    font-family: Hack, monospace;
+    font-family: Hack, Consolas, monospace;
     font-size: 0.85em;
 }
 
@@ -442,16 +454,6 @@ table tr {
 
 table tr:nth-child(2n) {
     background-color: rgb(226,233,241);
-}
-
-body > header h1 {
-    margin-top: 0;
-    margin-bottom: 0.2em;
-    padding: 0;
-    font-size: 2em;
-	color: rgb(168,200,220);
-    border-bottom: none;
-    background: none;
 }
 
 body > header a,
