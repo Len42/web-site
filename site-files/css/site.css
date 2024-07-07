@@ -192,7 +192,7 @@ img {
 
 /* For an image with a caption, use <figure><img><figcaption> */
 figure {
-    margin: 0.2rem 0.2rem 0.2rem 0;
+    padding: 0.2rem 0.2rem 0.2rem 0;
     vertical-align: middle
 }
 
@@ -207,11 +207,11 @@ aside {
     background: white;
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 640px) {
     aside {
         float: right;
         margin: 0.2rem 0 0.2rem 0.5rem;
-        max-width: 50%;
+        max-width: 40%;
     }
 
     aside img,
@@ -501,7 +501,7 @@ body > header nav #navCheck {
 body > header nav #navCheck:checked + ul {
     display: inline-block
 }
-@media (min-width: 50rem) {
+@media (min-width: 640px) {
     /* On a wide screen, display the linkline with a small dingbat */
     body > header nav ul {
         display: inline-block;
@@ -566,7 +566,7 @@ g-col {
     vertical-align: middle;
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 640px) {
     g-row {
         width: 100%;
         display: table;
@@ -576,11 +576,7 @@ g-col {
     g-col {
         display: table-cell;
         padding-right: 0.1rem;
-    }
-
-    g-col:last-child {
         padding-left: 0.1rem;
-        padding-right: 0;
     }
 }
 
