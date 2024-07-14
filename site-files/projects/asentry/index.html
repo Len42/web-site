@@ -48,18 +48,18 @@ This is a description of how it’s made.</p>
 
 <aside><p>If you want to get asteroid alerts on your computer instead of building a stand-alone device, <a href="https://github.com/Len42/asentry">there’s a Python program for that.</a></p></aside>
 
-<h2>Operation</h2>
-<p>Periodically, an HTTP request is sent over wifi to the Sentry web service to query for the asteroids with the highest threat levels. Typically 6 or 7 objects are returned. This list is compared to the results from the <em>previous</em> request.</p>
-
-<p>If the new results have any objects that did not appear in the previous results, or if the threat level of any of the objects has increased since the previous request, then an alert message is displayed on the OLED display and an alert sound is played. The device then waits for the pushbutton to be pressed, to make sure that the alert is seen.</p>
-
-<p>If no new threats are found, “No new threats” is displayed for a few seconds, then the device waits for an hour before querying the Sentry service again. If the pushbutton is pressed, it will stop waiting and do the next check immediately.</p>
-
 <h2>The Sentry System</h2>
 <p><a href="https://www.jpl.nasa.gov/">NASA’s Jet Propulsion Laboratory</a> operates the
 <a href="https://cneos.jpl.nasa.gov/sentry/">Sentry system</a> which keeps track of Earth-approaching asteroids, predicts their orbits, and assigns each one a threat level indicating its impact risk.</p>
 
 <p>The Sentry system provides a web API to query its database and return results in JSON format. This device uses that to get information about the asteroids that are most likely to hit the Earth.</p>
+
+<h2>Device Operation</h2>
+<p>Periodically, an HTTP request is sent over wifi to the Sentry web service to query for the asteroids with the highest threat levels. Typically 6 or 7 objects are returned. This list is compared to the results from the <em>previous</em> request.</p>
+
+<p>If the new results have any objects that did not appear in the previous results, or if the threat level of any of the objects has increased since the previous request, then an alert message is displayed on the OLED display and an alert sound is played. The device then waits for the pushbutton to be pressed, to make sure that the alert is seen.</p>
+
+<p>If no new threats are found, “No new threats” is displayed for a few seconds, then the device waits for an hour before querying the Sentry service again. If the pushbutton is pressed, it will stop waiting and do the next check immediately.</p>
 
 <h1><a name="hardware"></a>Hardware</h1>
 <p>The <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh">Pico W</a>
