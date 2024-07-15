@@ -398,7 +398,7 @@ dl.inline {
 
 dl.inline dt {
     display: inline;
-    background-position-y: 0.25em;
+    background-position-y: 0.45em;
     margin-left: -0.75em;
 
 }
