@@ -60,7 +60,7 @@ body > header nav {
 }
 
 body > header hgroup .logo {
-    float:left;
+    float: left;
     padding-right: 0.5rem;
 }
 
@@ -221,8 +221,9 @@ aside {
 
 @media (min-width: 640px) {
     aside {
-        float: right;
-        margin: 0.2rem 0 0.2rem 0.5rem;
+        clear: both;
+        float: inline-end;
+        margin: 0.2rem 0.2rem 0.2rem 0.5rem;
         max-width: 40%;
     }
 
