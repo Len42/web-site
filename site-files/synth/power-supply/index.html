@@ -27,7 +27,10 @@
 
 <main>
 <h1><a name="overview"></a>Overview</h1>
-<p>This is the power supply that I made for my Eurorack modular system. It is meant to live inside the system case with the power switch and DC input jack mounted on the side of the case.</p>
+<aside><a href="rack.jpg"><img src="rack.jpg"></a></aside>
+<p>This is a power supply for my Eurorack modular system. It is meant to live inside the system case, but I never got around to making a proper case. 🙄 It powered an 84 HP tabletop rack until I outgrew that and bought a 6U case with a beefier power supply.</p>
+
+<p><a href="https://github.com/Len42/Synth/tree/main/misc/Power-Supply">Hardware design files are on GitHub.</a></p>
 
 <h1><a name="specs"></a>Specs</h1>
 <dl class="inline">
@@ -36,7 +39,22 @@
 </dl>
 
 <h1><a name="notes"></a>Notes</h1>
-<p>Final section.</p>
+<p>I used an old laptop charger (power brick) as the AC-DC converter so I didn't have to mess around with mains voltage. The required Eurorack voltages (+12 V, -12 V, +5 V) are supplied by switching DC-DC converters. The outputs are isolated from the input.</p>
+
+<p>There are two 16-pin Eurorack power connectors; you'll want a busboard or flying-bus cable to feed multiple modules.</p>
+
+<p>The power supply is assembled on a stripboard PCB. I have provided a layout diagram.</p>
+
+<p>Please note that I am a hobbyist, not a trained electronics engineer. No guarantees!</p>
+
+<g-row>
+<g-col><a href="power-supply.jpg"><img src="power-supply.jpg"></a></g-col>
+<g-col><a href="schematic.png"><img src="schematic.png"></a></g-col>
+<g-col><a href="stripboard-layout.png"><img src="stripboard-layout.png"></a></g-col>
+<g-col><a href="circuit-top.jpg"><img src="circuit-top.jpg"></a></g-col>
+<g-col><a href="circuit-bottom.jpg"><img src="circuit-bottom.jpg"></a></g-col>
+</g-row>
+
 </main>
 
 <footer><g-row><g-col style="width: 110px; vertical-align: middle">
