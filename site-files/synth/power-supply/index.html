@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-CA">
 <head>
-<title>Eurorack Power Supply - Len’s Stuff</title>
+<title>Synth Power Supply - Len’s Stuff</title>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../../css/site.css">
@@ -10,8 +10,8 @@
 <header>
 <hgroup>
 <a href="/"><img src="/assets/logo.jpg" class="logo" alt="home"></a>
-<h1>Eurorack Power Supply</h1>
-<p>Using a laptop charger</p>
+<h1>Synth Power Supply</h1>
+<p>Eurorack power from a laptop charger</p>
 </hgroup>
 <nav>
 <!--nav button--><label for="navCheck">&nbsp;</label><input type="checkbox" id="navCheck">
@@ -27,28 +27,37 @@
 
 <main>
 <h1><a name="overview"></a>Overview</h1>
-<aside><a href="rack.jpg"><img src="rack.jpg"></a></aside>
-<p>This is a power supply for my Eurorack modular system. It is meant to live inside the system case, but I never got around to making a proper case. 🙄 It powered an 84 HP tabletop rack until I outgrew that and bought a 6U case with a beefier power supply.</p>
+<aside><a href="power-supply.jpg"><img src="power-supply.jpg"></a></aside>
+<p>This is a power supply for <a href="..">my homebrew Eurorack synthesizer</a>. I used an old laptop charger (power brick) as the AC-DC converter so I didn't have to mess around with mains voltage.</p>
 
-<p><a href="https://github.com/Len42/Synth/tree/main/misc/Power-Supply">Hardware design files are on GitHub.</a></p>
+<aside><a href="rack.jpg"><img src="rack.jpg"></a></aside>
+<p>The power supply was meant to live inside the system case, but I never got around to making a proper case. 🙄 It powered an 84 HP tabletop rack until I outgrew that and bought a 6U case with a beefier power supply.</p>
 
 <h1><a name="specs"></a>Specs</h1>
 <dl class="inline">
-<dt>Input</dt><dd>Requires between 9 V and 36 V DC, 35W (from a power brick / wall wart / laptop charger)</dd>
+<dt>Input</dt><dd>Requires between 9 V and 36 V DC, 35W (from a power brick / wall wart)</dd>
 <dt>Output</dt><dd>+12 V, -12 V (1 A each), +5 V (500 mA)</dd>
 </dl>
 
 <h1><a name="notes"></a>Notes</h1>
-<p>I used an old laptop charger (power brick) as the AC-DC converter so I didn't have to mess around with mains voltage. The required Eurorack voltages (+12 V, -12 V, +5 V) are supplied by switching DC-DC converters. The outputs are isolated from the input.</p>
+<aside><a href="charger.jpg"><img src="charger.jpg"></a></aside>
+<p>An AC-DC converter (power brick, wall wart) is required to supply the input voltage (9 V to 36 V DC). I used the charger from an old laptop, which fortunately has an ordinary barrel jack for its DC output and doesn't need any handshake signals from the laptop. (An Apple charger won't work, for example.)</p>
 
-<p>There are two 16-pin Eurorack power connectors; you'll want a busboard or flying-bus cable to feed multiple modules.</p>
+<p>The standard Eurorack voltages (+12 V, -12 V, +5 V) are supplied by switching DC-DC converters. The outputs are isolated from the input.</p>
 
-<p>The power supply is assembled on a stripboard PCB. I have provided a layout diagram.</p>
+<p>There are two 16-pin Eurorack power connectors. You'll want a
+<a href="https://4mscompany.com/busstick-shrouded.php?c=6">busboard</a>
+or <a href="https://4mscompany.com/p.php?p=978&c=6">flying-bus cable</a>
+to feed multiple modules.</p>
+
+<p>The power supply is assembled on a stripboard PCB. I have provided a
+<a href="stripboard-layout.png">layout diagram</a>.</p>
+
+<p><a href="https://github.com/Len42/Synth/tree/main/misc/Power-Supply">The hardware design files are on GitHub.</a></p>
 
 <p>Please note that I am a hobbyist, not a trained electronics engineer. No guarantees!</p>
 
 <g-row>
-<g-col><a href="power-supply.jpg"><img src="power-supply.jpg"></a></g-col>
 <g-col><a href="schematic.png"><img src="schematic.png"></a></g-col>
 <g-col><a href="stripboard-layout.png"><img src="stripboard-layout.png"></a></g-col>
 <g-col><a href="circuit-top.jpg"><img src="circuit-top.jpg"></a></g-col>
