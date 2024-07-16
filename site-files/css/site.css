@@ -222,8 +222,8 @@ aside {
 @media (min-width: 640px) {
     aside {
         clear: both;
-        float: inline-end;
-        margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+        float: right;
+        margin: 0.2rem 0 0.2rem 0.5rem;
         max-width: 40%;
     }
 
