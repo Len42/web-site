@@ -97,27 +97,14 @@ body > footer {
 }
 
 a:link {
-	color: rgb(51,103,153);
-	text-decoration: none;
-}
-
-strong a:link,
-blockquote a:link,
-figcaption a:link,
-footer a:link,
-code a:link,
-kbd a:link,
-aside a:link {
-    color: black
+    color: currentcolor;
+    text-decoration: underline dotted 5% rgb(51,103,153);
+    text-underline-offset: 8%;
 }
 
 a:visited  {
-	color: rgb(128,128,128);
-	text-decoration: none;
-}
-
-a:active, a:hover {
-	text-decoration: underline;
+    color: currentcolor;
+    text-decoration-color: rgb(128,128,128);
 }
 
 em {
@@ -460,14 +447,14 @@ table tr:nth-child(2n) {
 body > header a,
 body > header a:link,
 body > header a:visited {
-	color: rgb(168,200,220);
+	color: currentcolor;
 	text-decoration: none;
 }
 
 body > header a:active,
 body > header a:hover {
-	color: rgb(168,200,220);
-	text-decoration: underline;
+    text-decoration: underline dotted 5%;
+    text-underline-offset: 8%;
 }
 
 body > header strong {
