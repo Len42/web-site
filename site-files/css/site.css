@@ -98,7 +98,11 @@ body > footer {
 
 a:link {
     color: currentcolor;
-    text-decoration: underline dotted 5% rgb(51,103,153);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 5%;
+    text-decoration-color: rgb(51,103,153);
+    text-underline-position: auto;
     text-underline-offset: 8%;
 }
 
@@ -453,7 +457,10 @@ body > header a:visited {
 
 body > header a:active,
 body > header a:hover {
-    text-decoration: underline dotted 5%;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 5%;
+    text-underline-position: auto;
     text-underline-offset: 8%;
 }
 
