@@ -52,9 +52,25 @@ Clone the repository including the submodules for the Daisy libraries:</p>
 <h1><a name="overview"></a>Firmware Overview</h1>
 <p>The firmware for this module is written in C++ using the Daisy Seed libraries
 (<a href="https://github.com/electro-smith/libDaisy">libDaisy</a> and
-<a href="https://github.com/electro-smith/DaisySP">DaisySP</a>).</p>
+<a href="https://github.com/electro-smith/DaisySP">DaisySP</a>).
+These libraries implement a host of useful DSP algorithms which do most of the actual audio processing.</p>
 
-TODO
+<p><em>dat-ting</em> is a multi-function module so the firmware is organized around a set of <em>programs.</em> Each program implements a particular function such as VCO or delay.
+Audio and CV processing is done by the currently-running program, which implements an audio callback function that is called by libDaisy.</p>
+
+<p>I have implemented several programs so far and I'm adding more as I need them.
+Some of the implementations are quite simple and don't have as many adjustable parameters as they could.</p>
+
+<aside><img src="oled-menu.jpg" alt="UI display"></aside>
+<p>The firmware also implements a user interface using the OLED display and the rotary encoder knob.
+This is used to select which program to run and to set whatever parameters the program requires.
+If you like menu-diving, you’ll love this module!</p>
+
+<aside><img src="oled-vco.jpg" alt="animation display"></aside>
+<aside><img src="oled-quant.jpg" alt="animation display"></aside>
+<p>When the UI is idle, it displays a fun and useful animation that shows what the currently-running program is doing. Each program has its own particular animation.</p>
+
+<p>A simple task scheduler is used to manage the user interface and animation tasks, as well as some other tasks for testing and debugging.</p>
 
 <h1><a name="tools"></a>Tools &amp; Libraries</h1>
 TODO: see here: https://github.com/electro-smith/DaisyWiki/wiki/Understanding-the-Toolchain
