@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Firmware -dat-ting - Len’s Stuff</title>
+<meta name="author" content="Len Popp">
+<link rel="license" href="#license">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<a href="/"><img src="/assets/logo.jpg" class="logo" alt="home"></a>
+<h1>dat-ting Firmware</h1>
+<p>Firmware for the dat-ting module</p>
+</hgroup>
+<nav>
+<!--nav button--><label for="navCheck">&nbsp;</label><input type="checkbox" id="navCheck">
+<ul>
+<li><a href="#building">Building</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#tools">Tools</a></li>
+<li>Back to <a href=".">dat-ting</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<aside><img src="firmware.png" alt="source code"></aside>
+<p>The <a href="index.html"><em>dat-ting</em> Eurorack module</a> is based on a
+<a href="https://electro-smith.com/products/daisy-seed">Daisy Seed</a> microcontroller board.
+The firmware is open source and is published under the <a href="https://github.com/Len42/dat-ting/blob/main/firmware/LICENSE">MIT license</a>. GitHub repository is <a href="https://github.com/Len42/dat-ting">here</a>.</p>
+
+<h1><a name="building"></a>Building the Firmware</h1>
+
+<p>To set up a development environment for Daisy Seed on Windows, Mac, or Linux,
+<a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment">follow these instructions</a>.</p>
+
+<p>The source code for this module’s firmware is in
+<a href="https://github.com/Len42/dat-ting">this GitHub repository</a>.
+Clone the repository including the submodules for the Daisy libraries:</p>
+<code>git clone --recurse-submodules https://github.com/Len42/dat-ting.git</code>
+<p>Or, if an SSL private key has been configured:</p>
+<code>git clone --recurse-submodules git@github.com:Len42/dat-ting.git</code>
+
+<p>To compile the firmware and download it to the Daisy Seed via USB,
+<a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#4a-flashing-the-daisy-via-usb">follow these instructions</a>.</p>
+
+<h1><a name="overview"></a>Firmware Overview</h1>
+<p>The firmware for this module is written in C++ using the Daisy Seed libraries
+(<a href="https://github.com/electro-smith/libDaisy">libDaisy</a> and
+<a href="https://github.com/electro-smith/DaisySP">DaisySP</a>).</p>
+
+TODO
+
+<h1><a name="tools"></a>Tools &amp; Libraries</h1>
+TODO: see here: https://github.com/electro-smith/DaisyWiki/wiki/Understanding-the-Toolchain
+
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col><div id="license">© 2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div></g-col></g-row></footer>
+
+</body>
+</html>
