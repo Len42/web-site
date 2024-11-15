@@ -36,18 +36,24 @@ The firmware is open source and is published under the <a href="https://github.c
 
 <h1><a name="building"></a>Building the Firmware</h1>
 
+<h2>Setup</h2>
 <p>To set up a development environment for Daisy Seed on Windows, Mac, or Linux,
 <a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment">follow these instructions</a>.</p>
 
+<h2>Get the Source Code</h2>
 <p>The source code for this module’s firmware is in
 <a href="https://github.com/Len42/dat-ting">this GitHub repository</a>.
-Clone the repository including the submodules for the Daisy libraries:</p>
+Clone the repository, including the submodules for the Daisy libraries:</p>
 <code>git clone --recurse-submodules https://github.com/Len42/dat-ting.git</code>
 <p>Or, if an SSL private key has been configured:</p>
 <code>git clone --recurse-submodules git@github.com:Len42/dat-ting.git</code>
 
-<p>To compile the firmware and download it to the Daisy Seed via USB,
-<a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#4a-flashing-the-daisy-via-usb">follow these instructions</a>.</p>
+<p>In the cloned repository, the firmware code is located in the
+<kbd>firmware/src</kbd> sub-directory.</p>
+
+<h2>Compile the Firmware</h2>
+<p><a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#4a-flashing-the-daisy-via-usb">Here are instructions</a>
+for compiling firmware and downloading it to the Daisy Seed via USB, when using Visual Studio Code for development.</p>
 
 <h1><a name="overview"></a>Firmware Overview</h1>
 <p>The firmware for this module is written in C++ using the Daisy Seed libraries
@@ -72,8 +78,24 @@ If you like menu-diving, you’ll love this module!</p>
 
 <p>A simple task scheduler is used to manage the user interface and animation tasks, as well as some other tasks for testing and debugging.</p>
 
-<h1><a name="tools"></a>Tools &amp; Libraries</h1>
-TODO: see here: https://github.com/electro-smith/DaisyWiki/wiki/Understanding-the-Toolchain
+<h1><a name="tools"></a>Tools &amp; Libraries Used</h1>
+<ul>
+<li>Daisy libraries <em>(Included as submodules in the git repo)</em></li>
+    <ul>
+    <li><a href="https://github.com/electro-smith/libDaisy">libDaisy</a> 7.1.0</li>
+    <li><a href="https://github.com/electro-smith/DaisySP">DaisySP</a> 1.0.0</li>
+    </ul>
+<li>GNU Make <em>(Included in the
+    <a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#1-Install-the-Toolchain">Daisy toolchain installer</a>
+    for Windows)</em></li>
+<li>dfu-util <em>(Included in the
+    <a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#1-Install-the-Toolchain">Daisy toolchain installer</a>
+    )</em></li>
+<li>TODO: LINKS GCC for Arm 13.3.1
+    <em>(Note: This is a newer version than the one in the toolchain installer)</em></li>
+<li>Python 3.12.2</li>
+<li>Visual Studio Code</li>
+</ul>
 
 </main>
 
