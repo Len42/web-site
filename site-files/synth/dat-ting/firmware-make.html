@@ -6,7 +6,7 @@
 <link rel="license" href="#license">
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
 </head>
 <body>
 <header>
@@ -28,11 +28,43 @@
 </header>
 
 <main>
-<h1><a name="intro"></a>Intro</h1>
 
-<aside><p>If you're using Visual Studio Code for development,
-TODO LINK follow these instructions to compile and download the firmware.
+<p>TODO: Clean up. Use headers instead of ul?</p>
+
+<aside><p>If you’re using Visual Studio Code for development,
+<a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#4a-flashing-the-daisy-via-usb">follow these instructions</a>
+to compile and download the firmware.
 </p></aside>
+
+<p>Here’s how to build and download the firmware for <em>dat-ting</em> from the command line (shell or Windows Command Prompt).</p>
+
+<p><em>Note: I have used Linux/Mac-style pathnames with <kbd>/</kbd> as the directory separator. For the Windows Command Prompt, use <kbd>\</kbd> instead.</em></p>
+
+<p><em>Note: In these instructions, replace <kbd><em>[repo-dir]</em></kbd> with the pathname of the <em>dat-ting</em> repository.</em></p>
+    
+<ul>
+<li>Build the Daisy libraries, if necessary.
+    (This only needs to be done the first time the firmware is compiled or if the libraries are updated.) Type these commands:</li>
+<code>cd <em>[repo-dir]</em>/lib/libDaisy
+make
+cd <em>[repo-dir]</em>/lib/DaisySP
+make
+</code>
+<li>Put the Daisy Seed into bootloader mode.</li>
+    <ul>
+    <li>Connect the Daisy Seed to the computer via USB.</li>
+    <li>Press <em>and hold</em> the <kbd>BOOT</kbd> button.</li>
+    <li>Press <em>and release</em> the <kbd>RESET</kbd> button.</li>
+    <li>Release the <kbd>BOOT</kbd> button.</li>
+    <li>The Seed’s on-board LED will start pulsing in a particular way to indicate bootloader mode.</li>
+    </ul>
+<li>Compile the firmware and download it to the Daisy Seed. Type these commands:</li>
+<code>cd <em>[repo-dir]</em>/firmware/src
+make all program-dfu
+</code>
+</ul>
+
+<h1><a name="intro"></a>Intro</h1>
 
 <p>Introduction.</p>
 

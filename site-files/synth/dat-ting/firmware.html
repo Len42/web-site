@@ -54,9 +54,12 @@ Clone the repository, including the submodules for the Daisy libraries:</p>
 <kbd>firmware/src</kbd> sub-directory.</p>
 
 <h2>Compile the Firmware</h2>
-If you're using Visual Studio Code for development,
+<p>If you’re using Visual Studio Code for development,
 <a href="https://github.com/electro-smith/DaisyWiki/wiki/1.-Setting-Up-Your-Development-Environment#4a-flashing-the-daisy-via-usb">follow these instructions</a>
 to compile the firmware and download it to the Daisy Seed via USB.</p>
+
+<p>To compile and download the firmware from the command line,
+<a href="firmware-make.html">follow these instructions</a>.</p>
 
 <h1><a name="overview"></a>Firmware Overview</h1>
 <p>The firmware for this module is written in C++ using the Daisy Seed libraries
@@ -67,8 +70,8 @@ These libraries implement a host of useful DSP algorithms which do most of the a
 <p><em>dat-ting</em> is a multi-function module so the firmware is organized around a set of <em>programs.</em> Each program implements a particular function such as VCO or delay.
 Audio and CV processing is done by the currently-running program, which implements an audio callback function that is called by libDaisy.</p>
 
-<p>I have implemented several programs so far and I'm adding more as I need them.
-Some of the implementations are quite simple and don't have as many adjustable parameters as they could.</p>
+<p>I have implemented several programs so far and I’m adding more as I need them.
+Some of the implementations are quite simple and don’t have as many adjustable parameters as they could.</p>
 
 <aside><img src="oled-menu.jpg" alt="UI display"></aside>
 <p>The firmware also implements a user interface using the OLED display and the rotary encoder knob.
