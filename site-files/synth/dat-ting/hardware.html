@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>Hardware - dat ting - Len’s Stuff</title>
+<meta name="author" content="Len Popp">
+<link rel="license" href="#license">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<a href="/"><img src="/assets/logo.jpg" class="logo" alt="home"></a>
+<h1>dat ting Hardware</h1>
+<p>Hardware design of the dat ting module</p>
+</hgroup>
+<nav>
+<!--nav button--><label for="navCheck">&nbsp;</label><input type="checkbox" id="navCheck">
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#pcbs">PCBs</a></li>
+<li><a href="#schematic">Schematic</a></li>
+<li><a href="#tools">Tools</a></li>
+<li>Back to <a href=".">dat ting</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<p><em>dat ting</em> is a 10HP multi-function Eurorack DSP module.
+Hardware and software are open source. GitHub repository is <a href="https://github.com/Len42/dat-ting">here</a>.</p>
+
+<aside><a href="board2.jpg"><img src="board2.jpg" alt="dat ting PCB"></a></aside>
+
+<h1><a name="features"></a>Hardware Features</h1>
+<ul>
+<li>10 HP <a href="https://en.wikipedia.org/wiki/Eurorack">Eurorack</a> module</li>
+<li>Based on an <a href="https://electro-smith.com/products/daisy-seed">Electrosmith Daisy Seed</a>
+    board with an
+    <a href="https://www.st.com/en/microcontrollers-microprocessors/stm32h750-value-line.html">
+    STM32 ARM Cortex-M7</a> microcontroller</li>
+<li>Inputs: 1 x audio, 2 x CV/gate</li>
+<li>Outputs: 2 x audio, 2 x CV/gate</li>
+<li>Rotary encoder and OLED display for microcontroller UI</li>
+<li>Multi-purpose pushbutton and potentiometer</li>
+<li>USB connection for firmware download and debugging</li>
+</ul>
+
+<h1><a name="notes"></a>Notes</h1>
+<p>Please note that I am a hobbyist, not a trained electronics engineer. No guarantees!</p>
+
+<p><em>dat ting</em> is open source hardware. The hardware design is
+published under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.
+Firmware is published under the <a href="https://github.com/Len42/dat-ting/blob/main/firmware/LICENSE">MIT license</a>.</p>
+
+<p>This module requires a 10-pin Eurorack power cable.
+The microcontroller board is powered by either the USB connection or the Eurorack +12 V supply, whichever is turned on. (It’s OK to have both plugged in at the same time.)</p>
+
+<p>An OLED display and a rotary encoder are used for a user interface to the microcontroller, and to display fun animations.</p>
+
+<p>For the USB connection, I have the USB cable running through a hole in the front panel and a right-angle adapter to the Daisy Seed. It looks a bit janky and it’s hard to plug and unplug but it works.</p>
+
+<aside><a href="board.jpg"><img src="board.jpg" alt="dat ting PCB"></a></aside>
+
+<h2>CV In &amp; Out</h2>
+<p>There’s an important difference between the control voltage inputs and outputs on this module.
+The CV inputs are bipolar, meaning they can accept a positive or negative input voltage, but the CV outputs are unipolar, only able to produce positive voltages (0 V to +10 V nominal).</p>
+
+<p>The reason for this is the microcontroller’s DAC (digital-to-analog converter) is less precise than its ADC (analog-to-digital converter). The DAC only has 12 bits of precision, which is barely enough to produce a precise one-volt-per-octave pitch CV over 10 octaves. The ADC, on the other hand, produces 16-bit results, which is enough to give good precision over the entire input voltage range.</p>
+
+<p>I want the module to be able to handle volt-per-octave input and output with reasonable precision, so I sacrificed the ability to produce bipolar CV output in order to get good pitch tracking.</p>
+
+<p>The input and output op-amp stages use precision resistors, which should help with CV accuracy.</p>
+
+<h1><a name="pcbs"></a>PCBs</h1>
+<p>PCB layouts are provided in <a href="https://www.kicad.org/">KiCad</a> and <a href="https://en.wikipedia.org/wiki/Gerber_format">gerber</a> formats, <a href="https://github.com/Len42/dat-ting/tree/main/hardware">on GitHub</a>. A PCB layout for a drilled front panel (with no labels) is also included.</p>
+
+<p>The PCBs that I designed for this module can be ordered from <a href="https://oshpark.com/profiles/Len">OSH Park</a>:</p>
+<ul>
+<li><a href="https://oshpark.com/shared_projects/AowQfGkG">Main board</a></li>
+<li><a href="https://oshpark.com/shared_projects/TdzyVupI">Controls board</a></li>
+<li><a href="https://oshpark.com/shared_projects/fQYMJEIx">Front panel</a></li>
+</ul>
+
+<p><a href="https://github.com/Len42/dat-ting/blob/main/hardware/bom.csv">A parts list is here.</a></p>
+
+<h1><a name="schematic"></a>Schematic</h1>
+<p>PDF version is <a href="schematic.pdf">here</a>. KiCad files are <a href="https://github.com/Len42/dat-ting/tree/main/hardware">on GitHub</a>.</p>
+
+<g-row>
+<g-col><a href="schematic1.png"><img src="schematic1.png" alt="schematic page 1"></a></g-col>
+<g-col><a href="schematic2.png"><img src="schematic2.png" alt="schematic page 2"></a></g-col>
+</g-row>
+
+<h1><a name="tools"></a>Software Used</h1>
+<p><a href="https://www.kicad.org/">KiCad</a> 8.0.5</p>
+
+</main>
+
+<footer><g-row><g-col style="width: 110px; vertical-align: middle">
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a>
+</g-col>
+<g-col><div id="license">© 2024 Len Popp<br>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div></g-col></g-row></footer>
+
+</body>
+</html>

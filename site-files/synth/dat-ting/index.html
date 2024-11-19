@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<title>dat ting - Len’s Stuff</title>
+<meta name="author" content="Len Popp">
+<link rel="license" href="#license">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../css/site.css">
+</head>
+<body>
+<header>
+<hgroup>
+<a href="/"><img src="/assets/logo.jpg" class="logo" alt="home"></a>
+<h1>dat ting</h1>
+<p>Multi-function DSP module with a Daisy Seed</p>
+</hgroup>
+<nav>
+<!--nav button--><label for="navCheck">&nbsp;</label><input type="checkbox" id="navCheck">
+<ul>
+<li><a href="#programs">Programs</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="hardware.html">Hardware</a></li>
+<li><a href="firmware.html">Firmware</a></li>
+<li><a href="#license">License</a></li>
+<li>Back to <a href="..">Synth</a></li>
+<li><a href="/">Home</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<aside><a href="dat-ting.jpg"><img src="dat-ting.jpg" alt="dat ting module"></a></aside>
+
+<p><em>dat ting</em> is a 10HP multi-function <a href="https://en.wikipedia.org/wiki/Eurorack">Eurorack</a> DSP module inspired by <a href="https://www.expert-sleepers.co.uk/disting.html">dis ting</a>.
+It’s based on an <a href="https://electro-smith.com/products/daisy-seed">Electrosmith Daisy Seed</a> microcontroller board.</p>
+    
+<p>This module is part of my <a href="..">homebrew Eurorack synthesizer</a>. Hardware and software are open source. GitHub repository is <a href="https://github.com/Len42/dat-ting">here</a>.</p>
+
+<h1><a name="programs"></a>Programs</h1>
+<p><em>dat ting</em> can run a variety of programs. It can act as a sound source, an audio processor, or a CV processor. Available programs include:</p>
+<ul>
+<li>Variable-shape VCO</li>
+<li>Synth Drums</li>
+<li>Delay</li>
+<li>Reverb</li>
+<li>Bitcrusher</li>
+<li>Quantizer</li>
+<li>anything else I feel like writing firmware for!</li>
+</ul>
+<div>
+<img src="oled-menu.jpg" alt="menu display">
+<img src="oled-quant.jpg" alt="quantizer display">
+<img src="oled-vco.jpg" alt="vco display">
+<img src="oled-crush.jpg" alt="bitcrusher display">
+</div>
+
+<h1><a name="features"></a>Features</h1>
+<ul>
+<li>Rotary encoder and OLED display for program and parameter selection (and fun animations)</li>
+<li>Audio: Mono input, stereo outputs</li>
+<li>CV/Gate: 2 bipolar inputs, 2 unipolar outputs</li>
+<li>Potentiometer for adjusting various parameters</li>
+<li>Pushbutton for trigger/gate, tap tempo, or whatever</li>
+<li>Audio processing is done by a <a href="https://electro-smith.com/products/daisy-seed">Daisy Seed</a> microcontroller/DSP board</li>
+</ul>
+
+<h1><a name="hardware"></a><a href="hardware.html">Hardware</a></h1>
+
+<h1><a name="firmware"></a><a href="firmware.html">Firmware</a></h1>
+
+<h1><a name="license"></a>License</h1>
+<p>The <em>dat ting</em> module is open source hardware.
+The hardware design is published under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.
+Firmware and software are published under the <a href="https://github.com/Len42/Dexy/blob/main/firmware/LICENSE">MIT license</a>.</p>
+
+</main>
+
+<footer>
+    <g-row>
+        <g-col style="width: 155px; vertical-align: middle">
+            <img src="https://i0.wp.com/www.oshwa.org/wp-content/uploads/2014/03/oshw-logo-100-px.png" width=71 height=75 />
+            <img src="../../assets/osi-logo.png" width=58 height=75 />
+        </g-col>
+        <g-col style="vertical-align: middle">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons Licence"/></a><br>
+            <div id="license">© 2024 Len Popp. This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</div>
+        </g-col>
+    </g-row>
+</footer>
+
+</body>
+</html>

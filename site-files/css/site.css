@@ -112,7 +112,11 @@ a:visited  {
 }
 
 em {
-    font-weight: italic
+    font-style: italic
+}
+
+em em {
+    font-style: normal
 }
 
 strong {
