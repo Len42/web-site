@@ -47,12 +47,7 @@ This is a description of how it’s made.</p>
 <p>This device is <a href="https://learn.adafruit.com/generating-text-with-chatgpt-pico-w-circuitpython">based on a project</a> by
 <a href="https://github.com/jepler">Jeff Epler.</a></p>
 
-<aside><figure>
-<a href="https://xkcd.com/2984/">
-<img src="https://imgs.xkcd.com/comics/asteroid_news.png" alt="relevant xkcd comic">
-</a>
-<figcaption><a href="https://xkcd.com/2984/">Asteroid News from xkcd</a></figcaption>
-</figure></aside>
+<aside><p>If you want to get asteroid alerts on your computer instead of building a stand-alone device, <a href="https://github.com/Len42/asentry">there’s a Python program for that.</a></p></aside>
 
 <h2>The Sentry System</h2>
 <p><a href="https://www.jpl.nasa.gov/">NASA’s Jet Propulsion Laboratory</a> operates the
@@ -60,7 +55,12 @@ This is a description of how it’s made.</p>
 
 <p>The Sentry system provides a web API to query its database and return results in JSON format. This device uses that to get information about the asteroids that are most likely to hit the Earth.</p>
 
-<aside><p>If you want to get asteroid alerts on your computer instead of building a stand-alone device, <a href="https://github.com/Len42/asentry">there’s a Python program for that.</a></p></aside>
+<aside><figure>
+<a href="https://xkcd.com/2984/">
+<img src="https://imgs.xkcd.com/comics/asteroid_news.png" alt="relevant xkcd comic">
+</a>
+<figcaption><a href="https://xkcd.com/2984/">Asteroid News from xkcd</a></figcaption>
+</figure></aside>
 
 <h2>Device Operation</h2>
 <p>Periodically, an HTTP request is sent over wifi to the Sentry web service to query for the asteroids with the highest threat levels. Typically 6 or 7 objects are returned. This list is compared to the results from the <em>previous</em> request.</p>
