@@ -18,24 +18,58 @@
 <nav>
 <!--nav button--><label for="navCheck">&nbsp;</label><input type="checkbox" id="navCheck">
 <ul>
-<li><a href="#intro">Intro</a></li>
-<li><a href="#main">Main</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-<li>Back to <a href=".">[x]</a></li>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution</a></li>
 <li><a href="/">Home</a></li>
 </ul>
 </nav>
 </header>
 
 <main>
-<h1><a name="intro"></a>Intro</h1>
-<p>Introduction.</p>
+<h1><a name="problem"></a>Problem</h1>
+<p>When sending HTTPS requests to a web server using CircuitPython’s <code>adafruit_requests</code> library, it may fail to verify the server’s SSL certificate even though the certificate is valid. The error messages from CircuitPython look like this:</p>
+<code>Failed to verify certificate
+OSError: (-12288, 'MBEDTLS_ERR_X509_FATAL_ERROR')</code>
+<aside>
+<p>More Info:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/188266/how-are-ssl-certificates-verified/188308#188308">How SSL certificates are verified</a></li>
+<li><a href="https://github.com/adafruit/certificates?tab=readme-ov-file#tlsssl-certificates-used-in-adafruit-software">SSL root certificates supported by CircuitPython</a></li>
+ </ul>
+ </aside>
+<p>The problem is that CircuitPython’s <code>ssl</code> library does not know about all of the root CAs (certificate authorities) that issue SSL certificates, so some web sites have SSL certificates that can’t be verified. CircuitPython’s hard-coded list of root certificates is incomplete due to memory limitations.</p>
 
-<h1><a name="main"></a>Main</h1>
-<p>Main section.</p>
+<h2>My Example</h2>
+<p>I ran into this problem with <a href="/projects/asentry/">my asentry project</a>, which uses a Raspbery Pi Pico W to connect to a NASA web service. It worked fine for months, then suddenly failed with the error message shown above. The web server could still be accessed using desktop Python or a web browser, so the problem was apparently in CircuitPython.</p>
+<p>The cause of the problem turned out to be that the web server’s SSL certificate was updated, and the new certificate referred to a different root CA which happened to be one that is not supported by CircuitPython.</p>
 
-<h1><a name="conclusion"></a>Conclusion</h1>
-<p>Final section.</p>
+<h1><a name="solution"></a>Solution</h1>
+<p>Fortunately, there is a way to fix this, for most applications anyway.</p>
+<p>CircuitPython’s <code>ssl</code> library provides the function <code>load_verify_locations()</code> that can load a certificate for a root CA and use it to verify web sites’ SSL certificates. There is a limitation (as of CircuitPython 9.2.6): Only a single root certificate can be loaded, so this only works for an application that accesses a single web site, not multiple diffrerent web sites (whose SSL certificates will likely refer to multiple different CAs).</p>
+<p>Here’s how to make sure the correct root CA certificate is used:</p>
+<h2>Make sure the web site is working</h2>
+<p>First, make sure that the problematic web site’s SSL certificate is actually valid. Enter the web site’s HTTPS URL into a web browser and check that the site comes up without an error.</p>
+<p>If this fails, the problem is on the server side. Sorry, I can’t help with that!</p>
+<h2>Find and download the root certificate</h2>
+<p>Once you have the web site displayed in a browser, you can get a copy of the root CA’s certificate that was used to verify the HTTPS connection.</p>
+<p>To do this, click on the padlock icon in the browser’s address bar, then click around until you figure out how to view the site’s SSL certificate chain. Select the root certificate (top-most or right-most in the list) and save it to a file.</p>
+<p>(The details of how to do this depend on which web browser you use.)</p>
+<p>You should end up with a file containing a single certificate (not the entire certificate chain) that starts with <code>-----BEGIN CERTIFICATE-----</code> followed by a bunch of base64-encoded stuff.</p>
+<h2>Use the correct root certificate</h2>
+<p>The final step is to get CircuitPython to use the correct root certificate.</p>
+<p>Here is a snippet of code that initializes the <code>adafruit_requests</code> library using a specific SSL root certificate:</p>
+<code>ssl_context = ssl.create_default_context()
+ssl_cert = '-----BEGIN CERTIFICATE-----\n'\
+    'MIIFiTCCA3GgAwIBAgIQb77arXO9CEDii02+1PdbkTANBgkqhkiG9w0BAQsFADBO\n'\
+    'MQswCQYDVQQGEwJVUzEYMBYGA1UECgwPU1NMIENvcnBvcmF0aW9uMSUwIwYDVQQD\n'\
+    <em>…several lines omitted…</em>
+    '98OwoX6EyneSMSy4kLGCenROmxMmtNVQZlR4rmA=\n'\
+    '-----END CERTIFICATE-----\n'
+ssl_context.load_verify_locations(cadata=ssl_cert)
+requests = adafruit_requests.Session(socketpool.SocketPool(radio),
+                                        ssl_context)</code>
+<p>The variable <code>ssl_cert</code> contains the entire contents of the certificate file that was downloaded. Note that the line breaks from the file are preserved (the <code>\n</code> at the end of each line).</p>
+<p><a href="https://github.com/Len42/asentry-gadget/blob/main/firmware/code.py">See here for a complete program</a> that loads a root certificate in this way.</p>
 </main>
 
 <footer><g-row><g-col style="width: 110px; vertical-align: middle">
