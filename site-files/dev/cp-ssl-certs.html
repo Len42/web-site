@@ -26,6 +26,9 @@
 </header>
 
 <main>
+<p>I ran into trouble with SSL certificate errors when sending web requests from CircuitPython.
+This is a description of the problem and how I solved it.</p>
+
 <h1><a name="problem"></a>Problem</h1>
 <p>When sending HTTPS requests to a web server using CircuitPython’s <code>adafruit_requests</code> library, it may fail to verify the server’s SSL certificate even though the certificate is valid. The error messages from CircuitPython look like this:</p>
 <code>Failed to verify certificate
