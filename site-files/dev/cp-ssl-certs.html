@@ -43,12 +43,12 @@ OSError: (-12288, 'MBEDTLS_ERR_X509_FATAL_ERROR')</code>
 <p>The problem is that CircuitPython’s <code>ssl</code> library does not know about all of the root CAs (certificate authorities) that issue SSL certificates, so some web sites have SSL certificates that can’t be verified. CircuitPython’s hard-coded list of root certificates is incomplete due to memory limitations.</p>
 
 <h2>My Example</h2>
-<p>I ran into this problem with <a href="/projects/asentry/">my asentry project</a>, which uses a Raspbery Pi Pico W to connect to a NASA web service. It worked fine for months, then suddenly failed with the error message shown above. The web server could still be accessed using desktop Python or a web browser, so the problem was apparently in CircuitPython.</p>
+<p>I ran into this problem with <a href="/projects/asentry/">my asentry project</a>, which uses a Raspberry Pi Pico W to connect to a NASA web service. It worked fine for months, then suddenly failed with the error message shown above. The web server could still be accessed using desktop Python or a web browser, so the problem was apparently in CircuitPython.</p>
 <p>The cause of the problem turned out to be that the web server’s SSL certificate was updated, and the new certificate referred to a different root CA which happened to be one that is not supported by CircuitPython.</p>
 
 <h1><a name="solution"></a>Solution</h1>
 <p>Fortunately, there is a way to fix this, for most applications anyway.</p>
-<p>CircuitPython’s <code>ssl</code> library provides the function <code>load_verify_locations()</code> that can load a certificate for a root CA and use it to verify web sites’ SSL certificates. There is a limitation (as of CircuitPython 9.2.6): Only a single root certificate can be loaded, so this only works for an application that accesses a single web site, not multiple diffrerent web sites (whose SSL certificates will likely refer to multiple different CAs).</p>
+<p>CircuitPython’s <code>ssl</code> library provides the function <code>load_verify_locations()</code> that can load a certificate for a root CA and use it to verify web sites’ SSL certificates. There is a limitation (as of CircuitPython 9.2.6): Only a single root certificate can be loaded, so this only works for an application that accesses a single web site, not multiple different web sites (whose SSL certificates will likely refer to multiple different CAs).</p>
 <p>Here’s how to make sure the correct root CA certificate is used:</p>
 <h2>Make sure the web site is working</h2>
 <p>First, make sure that the problematic web site’s SSL certificate is actually valid. Enter the web site’s HTTPS URL into a web browser and check that the site comes up without an error.</p>
