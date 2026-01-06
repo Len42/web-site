@@ -96,7 +96,8 @@ body > footer {
     font-weight: bold;
 }
 
-a:link {
+a:link,
+a:link kbd {
     color: currentcolor;
     text-decoration-line: underline;
     text-decoration-style: dotted;
