@@ -52,11 +52,50 @@ by suggesting which word to guess next.</p>
 
 <h1><a name="use"></a>How to Use</h1>
 
+<h2>The Easy Way</h2>
+
+<p>The simplest way to use <kbd>wordler</kbd> to help you play Wordle is to run the script
+<kbd>dowordle.sh</kbd> or <kbd>dowordle.bat</kbd> (whichever works on your system).
+It will show you the guesses to enter into Wordle and prompt you to enter Wordle’s hints.</p>
+
+<h3>Example</h3>
+<p>Run the <kbd>dowordle</kbd> script. It will print this:</p>
+<code>$ ./dowordle.sh
+Guess: raise
+Hint:
+</code>
+<p>Enter the guess “raise” into Wordle. It will display this:</p>
+<img src="hint1.png" alt="screenshot of a Wordle hint">
+<p>Enter the hint into <kbd>dowordle</kbd>.
+Note that the hint is specified by using
+<kbd><kbd>g</kbd></kbd> for a green letter,
+<kbd><kbd>y</kbd></kbd> for a yellow letter,
+and <kbd><kbd>.</kbd></kbd> for a grey letter.</p>
+
+<code>$ ./dowordle.sh
+Guess: raise
+Hint:  ..gy.
+Guess: plant
+Hint:
+</code>
+
+<p>Enter the next guess (“plant”) into Wordle, enter its next hint to <kbd>dowordle</kbd>, and so on until the puzzle is solved.</p>
+
+<h2>Running <kbd>wordler</kbd> Directly</h2>
+
+<p>For more flexibility, the <kbd>wordler</kbd> program can be executed directly instead of using the <kbd>dowordle</kbd> script.</p>
+
 <p>After entering a guess into Wordle, run <kbd>wordler</kbd> with your guesses and Wordle’s hints as arguments. It will compute a good word for your next guess.</p>
 
-<p>For example, if your first guess is “learn” and Wordle displays this:</p>
-<img src="hint1.png" alt="screenshot of a Wordle hint">
-<p>you would run <code>wordler learn .g.y.</code> Note that the hint is specified by using ‘g’ for a green letter, ‘y’ for a yellow letter, and ‘.’ for a grey letter.</p>
+<h3>Example</h3>
+
+<p>If your first guess is “learn” and Wordle displays this:</p>
+<img src="hint2-1.png" alt="screenshot of a Wordle hint">
+<p>you would run <code>wordler learn .g.y.</code>
+Note that the hint is specified by using
+<kbd><kbd>g</kbd></kbd> for a green letter,
+<kbd><kbd>y</kbd></kbd> for a yellow letter,
+and <kbd><kbd>.</kbd></kbd> for a grey letter.</p>
 
 <code>$ ./wordler learn .g.y.
 Time: 2.30 seconds
@@ -64,7 +103,7 @@ Best guess is "metes"
 </code>
 
 <p>Enter <kbd>wordler</kbd>’s guess into Wordle to get another hint. Then, run <kbd>wordler</kbd> again with both hints to get the next guess. For example:</p>
-<img src="hint2.png" alt="screenshot of a Wordle hint">
+<img src="hint2-2.png" alt="screenshot of a Wordle hint">
 
 <code>$ ./wordler learn .g.y. metes .g...
 Time: 0.09 seconds
@@ -73,7 +112,7 @@ Best guess is "block"
 
 <p>And so on, until the game is over.</p>
 
-<h2>Other Options</h2>
+<h3>Other Options</h3>
 
 <p><kbd>wordler</kbd> can be used in other ways. The <kbd>--help</kbd> option will display all of the command-line options. Here are the fun ones:</p>
 
@@ -90,7 +129,7 @@ Best guess is "block"
 <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>
 – that is, it can solve any Wordle game in 6 guesses or less, and almost always in 3 or 4 guesses. This was tested against <kbd>words-target.txt</kbd> which, as far as I can tell, contains all possible answers. The file <kbd>results.txt</kbd> lists the number of guesses required to solve any answer.</p>
 
-<p>On my old desktop PC, it can take up to 30 seconds for <kbd>wordler</kbd> to compute a guess given one hint. With more hints it is much faster.</p>
+<p>On my desktop PC (which is quite old) it can take up to 30 seconds for <kbd>wordler</kbd> to compute a guess given one hint. With more hints it is much faster.</p>
 
 <h1><a name="works"></a>How It Works</h1>
 
