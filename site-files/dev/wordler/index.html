@@ -154,6 +154,10 @@ These are in <kbd>words-guess.txt</kbd> (to which the words in <kbd>words-target
 
 <p>Since the correct answer word is unknown, <kbd>wordler</kbd> tests each guess word against all plausible answers and takes the average number of answers that would remain. Then it picks the guess with the lowest average.</p>
 
+<p>In many cases, the selected best guess is not compatible with the hints given so far.
+If the guess <i>does</i> match the hints, there’s a chance that it could be the correct answer even though the algorithm hasn’t yet determined that for sure.
+To improve the chances of such lucky guesses, a small penalty is applied to the score of a guess that doesn’t match the hints. This slightly improves <kbd>wordler</kbd>’s performance.</p>
+
 <h2>Algorithm</h2>
 
 <p>Here is how <kbd>wordler</kbd> computes the next guess.</p>
